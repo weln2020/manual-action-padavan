@@ -18,13 +18,6 @@ on:
         
 env: 
   TNAME: "${{ github.event.inputs.production }}"    # 路由型号
-  BASE_PATH: padavan    # 基础目录
-  PUBLIC_PATH: public    # 公共目录
-  VERSION_FILE: versions.inc    # 版本后缀
-  PUBLIC_SH: public.sh    # 公共命令
-  UPLOAD_FIRMWARE: true    # 是否打包文件
-  CLONE_BRANCH: master    # padavan 分支
-  WORK_PATH: /opt/rt-n56u    # 工作目录 一定要加 /
 
 jobs:
   padavan:
@@ -48,4 +41,13 @@ jobs:
         echo "NAME=$VERSION+${val2}" >> $GITHUB_ENV
         echo "TAG=v$VERSION+${val2}" >> $GITHUB_ENV
         ip addr
+        
+    - name: 下载源码
+      run: |
+        sudo mkdir -m 777 -p /opt/images/
+        echo 开始编译时间： >> /opt/images/readme.txt
+        TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S' >> /opt/images/readme.txt
+        git clone --depth=1 https://github.com/hanwckf/rt-n56u.git /opt/rt-n56u > /dev/null
+        cd /opt/rt-n56u/toolchain-mipsel
+        sh dl_toolchain.sh > /dev/null
         pwd
