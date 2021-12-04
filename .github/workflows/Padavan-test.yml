@@ -30,14 +30,12 @@ jobs:
         whoami
         id
         DATE=$(TZ='Asia/Shanghai' date '+%Y/%m/%d %H:%M')
+        echo "${{ env.DATE }}"
         val1=$(echo ${{ github.event.inputs.production }} | sed 's/ /-/')
         echo "NAME=$DATE-$val1" >> $GITHUB_ENV
         echo "TAG=Padavan-$val1" >> $GITHUB_ENV
         ip addr
-        echo "${{ env.NAME }}"
-        echo "${{ env.TAG }}"
-        echo "${{ env.DATE }}"
-        
+
     - name: 下载源码
       run: |
         sudo mkdir -m 777 -p /opt/images/
