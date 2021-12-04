@@ -29,8 +29,7 @@ jobs:
       run: |
         whoami
         id
-        "VERSION=$(TZ='Asia/Shanghai' date '+%Y/%m/%d %H:%M')"
-        echo "VERSION=$VERSION" >> $GITHUB_ENV
+        VERSION=$(TZ='Asia/Shanghai' date '+%Y/%m/%d %H:%M')
         val1=$(echo $TNAMES | sed 's/ /-/')
         echo "NAME=$VERSION-${val1}" >> $GITHUB_ENV
         echo "TAG=Padavan-${val1}" >> $GITHUB_ENV
