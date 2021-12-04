@@ -30,7 +30,7 @@ jobs:
         whoami
         id
         DATE=$(TZ='Asia/Shanghai' date '+%Y/%m/%d %H:%M')
-        echo "${{ env.DATE }}"
+        echo ${{ env.DATE }}
         val1=$(echo ${{ github.event.inputs.production }} | sed 's/ /-/')
         echo "NAME=$DATE-$val1" >> $GITHUB_ENV
         echo "TAG=Padavan-$val1" >> $GITHUB_ENV
