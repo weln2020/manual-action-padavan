@@ -23,23 +23,17 @@ jobs:
   padavan:
     runs-on: ubuntu-20.04
     if: github.event.repository.owner.id == github.event.sender.id     # 监视所有者点击start
-    steps:    
+    steps:
+
     - name: 生成版本号
       run: |
         whoami
         id
-        echo 接收到的输入参数:
-        echo "${{ github.event.inputs.production }}"
-        echo "${{ github.event.inputs.cloneurl }}"
-        echo "${{ github.event.inputs.release }}"
-        echo 当前目录:$(pwd)
-        VERSION=$(TZ='Asia/Shanghai' date +%Y.%m.%d-%H%M)
+        "VERSION=$(TZ='Asia/Shanghai' date '+%Y/%m/%d %H:%M')"
         echo "VERSION=$VERSION" >> $GITHUB_ENV
-        echo "DIR=/opt/rt-n56u" >> $GITHUB_ENV
-        val1="${{ github.event.inputs.production }}"
-        val2=$(echo $val1 | sed 's/ /-/')
-        echo "NAME=$VERSION+${val2}" >> $GITHUB_ENV
-        echo "TAG=v$VERSION+${val2}" >> $GITHUB_ENV
+        val1=$(echo $TNAMES | sed 's/ /-/')
+        echo "NAME=$VERSION-${val1}" >> $GITHUB_ENV
+        echo "TAG=Padavan-${val1}" >> $GITHUB_ENV
         ip addr
         
     - name: 下载源码
