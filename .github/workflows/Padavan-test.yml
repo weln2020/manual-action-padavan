@@ -1,47 +1,58 @@
-name: Padavan固件编译
+name: Padavan 手动云编译
 
 on:
   workflow_dispatch:
     inputs:
       production:
-        description: 设置编译固件的型号，用空格符分隔：
+        description: 设置固件型号，多个型号间用空格符分隔：
         default: "PSG1218"
         required: false
       cloneurl:
         description: 设置源码链接地址，注意后加.git：
         default: "https://github.com/hanwckf/rt-n56u.git"
-        required: false  
+        required: false
       release:
-        description: 是否需要发布到Release？(不发布也可以到Artifacts下载)
+        description: 发布到Release？否则到Artifacts下载：
         default: 'yes'
         required: false
-        
-env: 
-  TNAME: "${{ github.event.inputs.production }}"    # 路由型号
+
+env:
+  TNAMES: "${{ github.event.inputs.production }}"
 
 jobs:
-  padavan:
+  build:
     runs-on: ubuntu-20.04
-    if: github.event.repository.owner.id == github.event.sender.id     # 监视所有者点击start
+    if: github.event.repository.owner.id == github.event.sender.id
     steps:
-
+    - name: 同步主存储库
+      uses: actions/checkout@master
+      
+    - name: 初始环境设置
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
+        sudo apt-get update
+        sudo apt install unzip libtool-bin curl cmake gperf gawk flex bison nano xxd \
+        fakeroot kmod cpio git python3-docutils gettext automake autopoint \
+        texinfo build-essential help2man pkg-config zlib1g-dev libgmp3-dev \
+        libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget libc-dev-bin  > /dev/null
     - name: 生成版本号
+      if: true
       run: |
         whoami
         id
-        DATE=$(TZ='Asia/Shanghai' date '+%Y/%m/%d %H:%M')
-        echo ${{ env.DATE }}
-        val1=$(echo ${{ github.event.inputs.production }} | sed 's/ /-/')
+        echo "TNAMES=$TNAMES" >> $GITHUB_ENV
+        echo "DATE=$(TZ='Asia/Shanghai' date '+%Y.%m.%d %H%M') >> $GITHUB_ENV
+        val1=$(echo $TNAMES | sed 's/ /-/')
         echo "NAME=$DATE-$val1" >> $GITHUB_ENV
         echo "TAG=Padavan-$val1" >> $GITHUB_ENV
         ip addr
-
     - name: 下载源码
       run: |
         sudo mkdir -m 777 -p /opt/images/
         echo 开始编译时间： >> /opt/images/readme.txt
         TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S' >> /opt/images/readme.txt
-        git clone --depth=1 https://github.com/hanwckf/rt-n56u.git /opt/rt-n56u > /dev/null
+        git clone --depth=1 ${{ github.event.inputs.cloneurl }} /opt/rt-n56u > /dev/null
         cd /opt/rt-n56u/toolchain-mipsel
         sh dl_toolchain.sh > /dev/null
         pwd
