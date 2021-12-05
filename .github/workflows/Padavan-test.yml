@@ -16,9 +16,6 @@ on:
         default: 'yes'
         required: false
 
-env:
-  TNAMES: "${{ github.event.inputs.production }}"
-
 jobs:
   build:
     runs-on: ubuntu-20.04
@@ -41,6 +38,7 @@ jobs:
       run: |
         whoami
         id
+        TNAMES=${{ github.event.inputs.production }}"
         echo "TNAMES=$TNAMES" >> $GITHUB_ENV
         echo "DATE=$(TZ='Asia/Shanghai' date '+%Y.%m.%d %H%M') >> $GITHUB_ENV
         val1=$(echo $TNAMES | sed 's/ /-/')
