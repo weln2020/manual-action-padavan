@@ -38,8 +38,7 @@ jobs:
       run: |
         whoami
         id
-        TNAMES=${{ github.event.inputs.production }}
-        echo "TNAMES=$TNAMES" >> $GITHUB_ENV
+        echo "TNAMES=${{ github.event.inputs.production }}" >> $GITHUB_ENV
         DATE=$(TZ='Asia/Shanghai' date '+%Y.%m.%d %H%M')
         echo "DATE=$DATE" >> $GITHUB_ENV
         val1=$(echo $TNAMES | sed 's/ /-/')
