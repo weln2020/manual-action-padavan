@@ -38,10 +38,10 @@ jobs:
       run: |
         whoami
         id
-        VERSION=$(TZ='Asia/Shanghai' date +%Y.%m.%d %H%M)
-        echo "VERSION=$VERSION" >> $GITHUB_ENV
         val1="${{ github.event.inputs.production }}"
         val2=$(echo $val1 | sed 's/ /-/')
+        val3=$(TZ='Asia/Shanghai' date '+%Y.%m.%d %H%M')
+        echo "VERSION=$val3" >> $GITHUB_ENV
         echo "NAME=$VERSION-${val2}" >> $GITHUB_ENV
         echo "TAG=v$VERSION-${val2}" >> $GITHUB_ENV
         ip addr
@@ -52,6 +52,6 @@ jobs:
         echo 开始编译时间 >> /opt/images/readme.txt
         TZ='Asia/Shanghai'  date  '+%Y-%m-%d %H:%M:%S' >> /opt/images/readme.txt
         git clone --depth=1 ${{ github.event.inputs.cloneurl }} /opt/rt-n56u > /dev/null
-        cd ${{ env.DIR }}/toolchain-mipsel
+        cd /opt/rt-n56u/toolchain-mipsel
         sh dl_toolchain.sh > /dev/null
         pwd
