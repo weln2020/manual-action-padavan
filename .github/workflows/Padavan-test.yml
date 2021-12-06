@@ -40,8 +40,8 @@ jobs:
         id
         val1="${{ github.event.inputs.production }}"
         val2=$(echo $val1 | sed 's/ /-/')
-        val3=$(TZ='Asia/Shanghai' date '+%Y.%m.%d %H%M')
-        echo "VERSION=$val3" >> $GITHUB_ENV
+        VERSION=$(TZ='Asia/Shanghai' date '+%Y.%m.%d %H%M')
+        echo "VERSION=$VERSION" >> $GITHUB_ENV
         echo "NAME=$VERSION-${val2}" >> $GITHUB_ENV
         echo "TAG=v$VERSION-${val2}" >> $GITHUB_ENV
         ip addr
