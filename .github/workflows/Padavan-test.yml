@@ -34,41 +34,24 @@ jobs:
         texinfo build-essential help2man pkg-config zlib1g-dev libgmp3-dev \
         libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget libc-dev-bin  > /dev/null
 
-
     - name: 生成版本号
       run: |
         whoami
         id
-        echo 接收到的输入参数:
-        echo "${{ github.event.inputs.production }}"
-        echo "${{ github.event.inputs.release }}"
-        echo 
-        echo 当前目录:$(pwd)
-        # 版本号,用日期
-        VERSION=$(TZ='Asia/Shanghai' date +%Y.%m.%d-%H%M)
+        VERSION=$(TZ='Asia/Shanghai' date +%Y.%m.%d %H%M)
         echo "VERSION=$VERSION" >> $GITHUB_ENV
-        # $GITHUB_ENV变量必须要在下一个流程才生效
-        echo "DIR=/opt/rt-n56u" >> $GITHUB_ENV
         val1="${{ github.event.inputs.production }}"
         val2=$(echo $val1 | sed 's/ /-/')
-        echo "NAME=$VERSION+${val2}" >> $GITHUB_ENV
-        #让版本号符合版本规范 1.0.202110252117+K2P-PSG1218
-        # 2021.10.28-2133+K2P-PSG1218
-        echo "TAG=v$VERSION+${val2}" >> $GITHUB_ENV
+        echo "NAME=$VERSION-${val2}" >> $GITHUB_ENV
+        echo "TAG=v$VERSION-${val2}" >> $GITHUB_ENV
         ip addr
-
-    - name: 创建目录
-      run: |
-        echo ${{ env.NAME }}
-        echo ${{ env.TAG }}
-        sudo mkdir -m 777 -p ${{ env.DIR }}
-        sudo mkdir -m 777 -p /opt/images/
-        echo 开始编译时间 >> /opt/images/readme.txt
-        TZ='Asia/Shanghai'  date  '+%Y-%m-%d %H:%M:%S' >> /opt/images/readme.txt
 
     - name: 下载源码
       run: |
-        git clone --depth=1 https://github.com/hanwckf/rt-n56u.git ${{ env.DIR }}  > /dev/null
+        sudo mkdir -m 777 -p /opt/images/
+        echo 开始编译时间 >> /opt/images/readme.txt
+        TZ='Asia/Shanghai'  date  '+%Y-%m-%d %H:%M:%S' >> /opt/images/readme.txt
+        git clone --depth=1 ${{ github.event.inputs.cloneurl }} /opt/rt-n56u > /dev/null
         cd ${{ env.DIR }}/toolchain-mipsel
         sh dl_toolchain.sh > /dev/null
         pwd
