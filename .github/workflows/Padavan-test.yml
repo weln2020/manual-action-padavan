@@ -5,7 +5,7 @@ on:
     inputs:
       production:
         description: 设置固件型号，多个型号间用空格符分隔：
-        default: "PSG1218"
+        default: "K2P PSG1218"
         required: false
       cloneurl:
         description: 设置源码链接地址，注意后加.git：
@@ -66,7 +66,7 @@ jobs:
         echo 开始编译时间 >> /opt/images/readme.txt
         TZ='Asia/Shanghai'  date  '+%Y-%m-%d %H:%M:%S' >> /opt/images/readme.txt
 
-- name: 下载源码
+    - name: 下载源码
       run: |
         git clone --depth=1 https://github.com/hanwckf/rt-n56u.git ${{ env.DIR }}  > /dev/null
         cd ${{ env.DIR }}/toolchain-mipsel
