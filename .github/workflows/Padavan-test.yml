@@ -40,10 +40,10 @@ jobs:
         id
         val1=${{ github.event.inputs.production }}
         val2=$(echo ${val1} | sed 's/ /-/')
-        TIME=$(TZ='Asia/Shanghai' date '+%Y.%m.%d %H%M')
+        DATE=$(TZ='Asia/Shanghai' date '+%Y.%m.%d %H%M')
         echo "TNAMES=${val1}" >> $GITHUB_ENV
-        echo "DATE=$TIME" >> $GITHUB_ENV
-        echo "TIITLE=$TIME-${val2}" >> $GITHUB_ENV
+        echo "DATE=$DATE" >> $GITHUB_ENV
+        echo "TIITLE=$DATE-${val2}" >> $GITHUB_ENV
         echo "TAG=Padavan-${val2}" >> $GITHUB_ENV
         ip addr
 
