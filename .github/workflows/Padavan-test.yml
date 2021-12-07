@@ -43,8 +43,8 @@ jobs:
         val1="${{ github.event.inputs.production }}"
         val2=$(echo $val1 | sed 's/ /-/')
         echo "TNAMES=$val1" >> $GITHUB_ENV
-        echo "NAME=$VERSION+${val2}" >> $GITHUB_ENV
-        echo "TAG=v$VERSION+${val2}" >> $GITHUB_ENV
+        echo "NAME=$val3+${val2}" >> $GITHUB_ENV
+        echo "TAG=v$val3+${val2}" >> $GITHUB_ENV
         ip addr
 
     - name: 下载源码
