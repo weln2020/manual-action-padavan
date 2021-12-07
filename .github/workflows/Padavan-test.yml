@@ -38,10 +38,11 @@ jobs:
       run: |
         whoami
         id
-        VERSION=$(TZ='Asia/Shanghai' date +%Y.%m.%d-%H%M)
-        echo "VERSION=$VERSION" >> $GITHUB_ENV
+        val3=$(TZ='Asia/Shanghai' date +%Y.%m.%d-%H%M)
+        echo "DATE=$val3" >> $GITHUB_ENV
         val1="${{ github.event.inputs.production }}"
         val2=$(echo $val1 | sed 's/ /-/')
+        echo "TNAMES=$val1" >> $GITHUB_ENV
         echo "NAME=$VERSION+${val2}" >> $GITHUB_ENV
         echo "TAG=v$VERSION+${val2}" >> $GITHUB_ENV
         ip addr
