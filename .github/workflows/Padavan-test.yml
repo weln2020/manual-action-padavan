@@ -56,7 +56,7 @@ jobs:
         sh dl_toolchain.sh > /dev/null
         pwd
 
-    - name: 开始编译
+    - name: 自定义配置
       run: |
         for m in ${{ github.event.inputs.production }}; do
           cp -f $m/$m.config /opt/rt-n56u/trunk/configs/templates/$m.config
@@ -64,6 +64,14 @@ jobs:
           cp -f $m/$m.sh /opt/rt-n56u/trunk
           echo "$m.sh 拷贝完成。"
         done
-         # cd /opt/rt-n56u/trunk
-         # sudo chmod +x ./$m.sh
-         # sudo ./$m.sh
+
+    - name: 自定义配置
+      run: |
+        cd /opt/rt-n56u/trunk
+        for m in ${{ github.event.inputs.production }}; do
+          cp -f ./configs/templates/$m.config .config
+          echo "$m.config 修改插件模板完成。"
+          # sudo chmod +x ./$m.sh
+          sudo ./$m.sh
+          echo "$m.sh 自定义设置成功。"
+        done
