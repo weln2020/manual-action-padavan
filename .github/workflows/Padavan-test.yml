@@ -48,7 +48,7 @@ jobs:
 
     - name: 下载源码
       run: |
-        sudo mkdir -m 777 -p /opt/images/
+        mkdir -p /opt/images/
         echo 开始编译时间： >> /opt/images/readme.txt
         TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S' >> /opt/images/readme.txt
         git clone --depth=1 ${{ github.event.inputs.cloneurl }} /opt/rt-n56u > /dev/null
@@ -59,6 +59,7 @@ jobs:
     - name: 自定义配置
       run: |
         for m in ${{ github.event.inputs.production }}; do
+          cd /home/runner/work/manual-action-padavan/manual-action-padavan
           cp -f $m/$m.config /opt/rt-n56u/trunk/configs/templates/$m.config
           echo "$m.config 拷贝完成。"
           cp -f $m/$m.sh /opt/rt-n56u/trunk
