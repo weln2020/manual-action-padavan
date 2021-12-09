@@ -65,7 +65,7 @@ jobs:
           echo "$m.sh 拷贝完成。"
         done
 
-    - name: 自定义配置
+    - name: 开始编译
       run: |
         cd /opt/rt-n56u/trunk
         for m in ${{ github.event.inputs.production }}; do
