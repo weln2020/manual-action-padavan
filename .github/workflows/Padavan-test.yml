@@ -59,7 +59,7 @@ jobs:
     - name: 自定义配置
       run: |
         for m in ${{ github.event.inputs.production }}; do
-          cd /home/runner/work/manual-action-padavan/manual-action-padavan
+          cd /home/runner/work/manual-action-padavan
           cp -f $m/$m.config /opt/rt-n56u/trunk/configs/templates/$m.config
           echo "$m.config 拷贝完成。"
           cp -f $m/$m.sh /opt/rt-n56u/trunk
