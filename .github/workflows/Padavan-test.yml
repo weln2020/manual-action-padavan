@@ -5,7 +5,7 @@ on:
     inputs:
       production:
         description: 设置固件型号，多个型号间用空格符分隔：
-        default: "K2P PSG1218"
+        default: "PSG1218"
         required: false
       cloneurl:
         description: 设置源码链接地址，注意后加.git：
@@ -61,8 +61,8 @@ jobs:
         for m in ${{ github.event.inputs.production }}; do
           cp -f $m/$m.config /opt/rt-n56u/trunk/configs/templates/$m.config
           echo "${m} 修改插件模板完成。"
-          cp -f $m/$m.sh /opt/rt-n56u/
-          sudo chmod +x /opt/rt-n56u/$m.sh
-          sudo /opt/rt-n56u/$m.sh
+          cp -f $m/$m.sh /opt/rt-n56u/trunk
+          sudo chmod +x /opt/rt-n56u/trunk/$m.sh
+          sudo /opt/rt-n56u/trunk/$m.sh
           echo "${m} 自定义设置成功。"
         done
