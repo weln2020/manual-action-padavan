@@ -63,12 +63,8 @@ jobs:
           echo "$m.config 拷贝完成。"
           cp -f $m/$m.sh /opt/rt-n56u/trunk
           echo "$m.sh 拷贝完成。"
-        done
-
-    - name: 开始编译
-      run: |
-        cd /opt/rt-n56u/trunk
-        for m in ${{ github.event.inputs.production }}; do
+          
+          cd /opt/rt-n56u/trunk
           cp -f ./configs/templates/$m.config .config
           echo "$m.config 修改插件模板完成。"
           sudo chmod +x ./$m.sh
