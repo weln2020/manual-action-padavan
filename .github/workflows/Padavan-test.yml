@@ -71,7 +71,7 @@ jobs:
         for m in ${{ github.event.inputs.production }}; do
           cp -f ./configs/templates/$m.config .config
           echo "$m.config 修改插件模板完成。"
-          # sudo chmod +x ./$m.sh
+          sudo chmod +x ./$m.sh
           sudo ./$m.sh
           echo "$m.sh 自定义设置成功。"
         done
