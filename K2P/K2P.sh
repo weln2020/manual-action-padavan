@@ -5,11 +5,6 @@
 
 set -u
 
-echo "版本号添加时间"
-VERSION_TIME=$(TZ='Asia/Shanghai' date '+%Y%m%d')
-echo $VERSION_TIME
-sed -i "s/FIRMWARE_BUILDS_REV=[0-9]*/FIRMWARE_BUILDS_REV=$VERSION_TIME/g" ./versions.inc
-
 echo "删除默认配置项"
 sed -i 's/CONFIG_FIRMWARE_INCLUDE_OPENSSL_EXE=n/CONFIG_FIRMWARE_INCLUDE_OPENSSL_EXE=y/g' .config
 # Default
