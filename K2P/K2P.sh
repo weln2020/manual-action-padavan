@@ -3,14 +3,15 @@ set -u
 
 echo "版本号添加时间"
 VERSION_TIME=$(TZ='Asia/Shanghai' date '+%Y%m%d')
+echo $VERSION_TIME
 sed -i "s/FIRMWARE_BUILDS_REV=[0-9]*/FIRMWARE_BUILDS_REV=$VERSION_TIME/g" ./versions.inc
 
 echo "WEB页面添加个人信息"
 valtime=$(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M')
-val2="\\1 footer_code +='编译日期 $valtime by <a href=\"https://github.com/weln2020/router-rom\" target=\"blank\">WELN</a> \& <a href=\"https://www.right.com.cn/forum/thread-6896728-1-1.html\" target=\"blank\">恩山论坛</a><br>';"
-echo $val2
-sed -i "s#\(.*Non-Commercial Use Only[^;]*;\).*#$val2#" user/www/n56u_ribbon_fixed/state.js
-grep "Non-Commercial Use Only" user/www/n56u_ribbon_fixed/state.js
+val1="\\1 footer_code +='编译日期 $valtime by <a href=\"https://github.com/weln2020/manual-action-padavan\" target=\"blank\">WELN</a> \& <a href=\"https://www.right.com.cn/forum/thread-6896728-1-1.html\" target=\"blank\">恩山论坛</a><br>';"
+echo $val1
+sed -i "s#\(.*Non-Commercial Use Only[^;]*;\).*#$val1#" user/www/n56u_ribbon_fixed/state.js
+# grep "Non-Commercial Use Only" user/www/n56u_ribbon_fixed/state.js
 
 ################################################################################################
 # 因不同型号配置功能不一样，所以先把配置项删除，如果你自己要添加其他的，也要写上删除这一条，切记！！！
