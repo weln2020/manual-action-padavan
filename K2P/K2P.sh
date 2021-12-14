@@ -1,4 +1,8 @@
-# $WORK_DIR/trunk 执行在这个目录下，修改一些默认参数位置在 ./user/shared/defaults.h
+# 1.脚本执行目录在 /opt/rt-n56u/trunk
+# 2.默认参数在 ./user/shared/defaults.h
+# 3.WEB页面显示 ./user/www/n56u_ribbon_fixed/state.js
+# 4.版本信息在 ./versions.inc
+
 set -u
 
 echo "版本号添加时间"
@@ -10,22 +14,17 @@ echo "WEB页面添加个人信息"
 valtime=$(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M')
 val1="\\1 footer_code +='编译日期 $valtime by <a href=\"https://github.com/weln2020/manual-action-padavan\" target=\"blank\">WELN</a> \& <a href=\"https://www.right.com.cn/forum/thread-6896728-1-1.html\" target=\"blank\">恩山论坛</a><br>';"
 echo $val1
-sed -i "s#\(.*Non-Commercial Use Only[^;]*;\).*#$val1#" user/www/n56u_ribbon_fixed/state.js
-# grep "Non-Commercial Use Only" user/www/n56u_ribbon_fixed/state.js
+sed -i "s#\(.*Non-Commercial Use Only[^;]*;\).*#$val1#" ./user/www/n56u_ribbon_fixed/state.js
+# grep "Non-Commercial Use Only" ./user/www/n56u_ribbon_fixed/state.js
 
-################################################################################################
-# 因不同型号配置功能不一样，所以先把配置项删除，如果你自己要添加其他的，也要写上删除这一条，切记！！！
-################################################################################################
-
+echo "删除默认配置项"
 sed -i 's/CONFIG_FIRMWARE_INCLUDE_OPENSSL_EXE=n/CONFIG_FIRMWARE_INCLUDE_OPENSSL_EXE=y/g' .config
-
 # Default
 sed -i "/CONFIG_FIRMWARE_INCLUDE_DROPBEAR/d" .config           # 删除配置项 dropbear SSH
 sed -i "/CONFIG_FIRMWARE_INCLUDE_DROPBEAR_FAST_CODE/d" .config # 删除配置项 dropbear symmetrica
 sed -i "/CONFIG_FIRMWARE_INCLUDE_OPENSSH/d" .config            # 删除配置项 OpenSSH
 sed -i "/CONFIG_FIRMWARE_INCLUDE_DDNS_SSL/d" .config           # HTTPS support for DDNS client
 sed -i "/CONFIG_FIRMWARE_INCLUDE_HTTPS/d" .config              # HTTPS support
-
 # C大
 sed -i "/CONFIG_FIRMWARE_INCLUDE_MENTOHUST/d" .config          # 删除配置项 MENTOHUST
 sed -i "/CONFIG_FIRMWARE_INCLUDE_SCUTCLIENT/d" .config         # 删除配置项 SCUTCLIENT
