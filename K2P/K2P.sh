@@ -1,13 +1,14 @@
 # $WORK_DIR/trunk 执行在这个目录下，修改一些默认参数位置在 ./user/shared/defaults.h
 set -u
 
-echo "更新版本号时间"
+echo "版本号添加时间"
 VERSION_TIME=$(TZ='Asia/Shanghai' date '+%Y%m%d')
 sed -i "s/FIRMWARE_BUILDS_REV=[0-9]*/FIRMWARE_BUILDS_REV=$VERSION_TIME/g" ./versions.inc
 
-echo "WEB页面加入时间和个人信息"
+echo "WEB页面添加个人信息"
 valtime=$(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M')
-val2="\\1 footer_code +='编译日期 $valtime by <a href=\"https://github.com/tick-guo/router-rom\" target=\"blank\">tick-guo</a> \& <a href=\"https://www.right.com.cn/forum/thread-5853731-1-1.html\" target=\"blank\">恩山论坛</a><br>';"
+val2="\\1 footer_code +='编译日期 $valtime by <a href=\"https://github.com/weln2020/router-rom\" target=\"blank\">WELN</a> \& <a href=\"https://www.right.com.cn/forum/thread-6896728-1-1.html\" target=\"blank\">恩山论坛</a><br>';"
+echo $val2
 sed -i "s#\(.*Non-Commercial Use Only[^;]*;\).*#$val2#" user/www/n56u_ribbon_fixed/state.js
 grep "Non-Commercial Use Only" user/www/n56u_ribbon_fixed/state.js
 
