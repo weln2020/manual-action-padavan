@@ -27,7 +27,7 @@ sed -i "s/FIRMWARE_BUILDS_REV=[0-9]*/FIRMWARE_BUILDS_REV=$VERSION_TIME/g" ./vers
 
 # 2. 路由器页面下加入编译时间和个人信息标签
 
-cd ${{ env.DIR }}/trunk
+cd /opt/rt-n56u/trunk
 valtime=$(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M')
 val2="\\1 footer_code +='编译日期 $valtime by <a href=\"https://github.com/tick-guo/router-rom\" target=\"blank\">tick-guo</a> \& <a href=\"https://www.right.com.cn/forum/thread-5853731-1-1.html\" target=\"blank\">恩山论坛</a><br>';"
 sed -i "s#\(.*Non-Commercial Use Only[^;]*;\).*#$val2#" user/www/n56u_ribbon_fixed/state.js
