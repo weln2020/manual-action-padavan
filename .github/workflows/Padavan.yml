@@ -1,0 +1,122 @@
+name: Padavan 手动云编译
+
+on:
+  workflow_dispatch:
+    inputs:
+      production:
+        description: 设置固件型号：
+        default: "K2P PSG1218"
+        required: false
+      cloneurl:
+        description: 设置源码地址：
+        default: "https://github.com/hanwckf/rt-n56u.git"
+        required: false
+      modify:
+        description: 是否应用自定义配置？
+        default: 'yes'
+        required: false
+      release:
+        description: 是否发布到Release？
+        default: 'yes'
+        required: false
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    if: github.event.repository.owner.id == github.event.sender.id
+    steps:
+    - name: 同步主存储库
+      uses: actions/checkout@master
+      
+    - name: 初始环境设置
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
+        sudo apt-get update
+        sudo apt install unzip libtool-bin curl cmake gperf gawk flex bison nano xxd \
+        fakeroot kmod cpio git python3-docutils gettext automake autopoint \
+        texinfo build-essential help2man pkg-config zlib1g-dev libgmp3-dev \
+        libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget libc-dev-bin  > /dev/null
+    - name: 生成版本号
+      run: |
+        whoami
+        id
+        val3=$(TZ='Asia/Shanghai' date '+%Y.%m.%d-%H%M')
+        echo "DATE=$val3" >> $GITHUB_ENV
+        val1="${{ github.event.inputs.production }}"
+        val2=$(echo $val1 | sed 's/ /-/')
+        echo "NAME=Padavan-${val2}" >> $GITHUB_ENV
+        ip addr
+    - name: 下载源码
+      run: |
+        mkdir -p /opt/images
+        echo 开始编译时间： >> /opt/images/readme.txt
+        TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S' >> /opt/images/readme.txt
+        git clone --depth=1 ${{ github.event.inputs.cloneurl }} /opt/rt-n56u > /dev/null
+        cd /opt/rt-n56u/toolchain-mipsel
+        sh dl_toolchain.sh > /dev/null
+        pwd
+    - name: 自定义配置
+      if: ${{ github.event.inputs.modify == 'yes' }}
+      run: |
+        for m in ${{ github.event.inputs.production }}; do
+          cp -f $m/$m.config /opt/rt-n56u/trunk/configs/templates/$m.config
+          cp -f $m/$m.sh /opt/rt-n56u/trunk
+          cd /opt/rt-n56u/trunk
+          cp -f configs/templates/$m.config .config
+          echo "$m.config 修改插件模板成功！"
+          sudo chmod +x ./$m.sh
+          sudo ./$m.sh
+          echo "$m.sh 自定义设置成功！"
+        done
+    - name: 开始编译
+      run: |
+        cd /opt/rt-n56u/trunk
+        for m in ${{ github.event.inputs.production }}; do
+          echo "::group::开始编译 ${m}..."
+          sudo ./clear_tree || echo
+          sudo ./build_firmware_modify $m > /dev/null
+          ls -l images
+          sudo mv -f images/*.trx /opt/images
+          echo "::endgroup::"
+        done
+    - name: 收集信息
+      run: |
+        cd /opt/images
+        echo 完成编译时间： >> readme.txt
+        TZ='Asia/Shanghai'  date  '+%Y-%m-%d %H:%M:%S' >> readme.txt
+        echo >> readme.txt
+        echo 源码信息： >> readme.txt
+        pushd /opt/rt-n56u
+        git ls-remote --get-url origin >> /opt/images/readme.txt
+        git log --shortstat >> /opt/images/readme.txt
+        popd
+        echo >> readme.txt
+        echo md5校验值： >> readme.txt
+        cd /opt/images
+        for m in *.trx
+        do
+          mv -f -v "$m" "${m%.*}-${{ env.DATE }}.trx"
+        done
+        md5sum *.trx >> readme.txt || echo
+        ls -l
+    - name: 上传固件到Artifacts
+      if: true
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{ env.NAME }}
+        path: /opt/images
+
+    - name: 发布固件到Release
+      if: ${{ github.event.inputs.release == 'yes' }}
+      uses: softprops/action-gh-release@v1
+      with:
+        name: ${{ env.NAME }}
+        tag_name: ${{ env.DATE }}
+        body_path: /opt/images/readme.txt
+        draft: false
+        prerelease: false
+        files: /opt/images/*
+
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
