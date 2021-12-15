@@ -68,13 +68,10 @@ jobs:
         done
         cp -f ./padavan.sh $TRUNK
         cp -f ./defaults.h $TRUNK/user/shared
-        echo "defaults.h 修改默认设置成功！"
         cd $TRUNK
         cp -f configs/templates/$m.config .config
-        echo "$m.config 修改插件模板成功！"
         sudo chmod +x ./padavan.sh
         sudo ./padavan.sh
-        echo "padavan.sh 自定义设置成功！"
     - name: 开始编译
       run: |
         cd $TRUNK
