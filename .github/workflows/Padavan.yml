@@ -22,7 +22,7 @@ on:
 
 env:
   IMAGES: /opt/images
-  N56U: /opt/rt-n56u
+  RT_N56U: /opt/rt-n56u
   TRUNK: /opt/rt-n56u/trunk
 
 jobs:
@@ -56,8 +56,8 @@ jobs:
         mkdir -p $IMAGES
         echo 开始编译时间： >> $IMAGES/readme.txt
         TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S' >> $IMAGES/readme.txt
-        git clone --depth=1 ${{ github.event.inputs.cloneurl }} $N56U > /dev/null
-        cd $N56U/toolchain-mipsel
+        git clone --depth=1 ${{ github.event.inputs.cloneurl }} $RT_N56U > /dev/null
+        cd $RT_N56U/toolchain-mipsel
         sh dl_toolchain.sh > /dev/null
         pwd
     - name: 自定义配置
@@ -93,7 +93,7 @@ jobs:
         TZ='Asia/Shanghai'  date  '+%Y-%m-%d %H:%M:%S' >> readme.txt
         echo >> readme.txt
         echo 源码信息： >> readme.txt
-        pushd $N56U
+        pushd $RT_N56U
         git ls-remote --get-url origin >> $IMAGES/readme.txt
         git log --shortstat >> $IMAGES/readme.txt
         popd
