@@ -5,6 +5,7 @@
 
 
 [![](https://img.shields.io/github/downloads/weln2020/manual-action-padavan/total?label=下载量)](https://github.com/weln2020)
+[![](https://img.shields.io/github/stars/weln2020/manual-action-padavan/total?label=点击量)](https://github.com/weln2020)
 [![](https://img.shields.io/github/repo-size/weln2020/manual-action-padavan?label=库大小)](https://github.com/weln2020/manual-action-padavan)
 [![](https://img.shields.io/github/last-commit/weln2020/manual-action-padavan?label=最近修改)](https://github.com/weln2020/manual-action-padavan/actions/workflows/Padavan.yml)
 
