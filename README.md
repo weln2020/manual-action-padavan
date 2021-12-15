@@ -1,8 +1,8 @@
 # manual-action-padavan
 - Padavan 手动云编译 内含自定义文件 无需Fork修改源码：
 
-# 状态
-https://github.com/weln2020/manual-action-padavan
+# 状态 (https://github.com/weln2020/manual-action-padavan)
+
 
 ![workflow](https://github.com/weln2020/manual-action-padavan/actions/workflows/Padavan.yml/badge.svg)
 ![GitHub all releases](https://img.shields.io/github/downloads/weln2020/manual-action-padavan/total?label=下载量)
