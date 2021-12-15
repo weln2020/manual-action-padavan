@@ -1,8 +1,3 @@
-# 1.脚本执行目录在 /opt/rt-n56u/trunk
-# 2.默认参数在 ./user/shared/defaults.h
-# 3.WEB页面显示 ./user/www/n56u_ribbon_fixed/state.js
-# 4.版本信息在 ./versions.inc
-
 set -u
 
 echo "1.版本号添加时间"
