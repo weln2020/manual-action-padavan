@@ -96,7 +96,7 @@ jobs:
         cd /opt/images
         for m in *.trx
         do
-          mv -f -v "$m" "${m%.*}-${{ env.DATE }}.trx"
+          mv -f -v "$m" "${m%.*}_${{ env.DATE }}.trx"
         done
         md5sum *.trx >> readme.txt || echo
         ls -l
@@ -106,7 +106,6 @@ jobs:
       with:
         name: ${{ env.NAME }}
         path: /opt/images
-
     - name: 发布固件到Release
       if: ${{ github.event.inputs.release == 'yes' }}
       uses: softprops/action-gh-release@v1
@@ -117,6 +116,5 @@ jobs:
         draft: false
         prerelease: false
         files: /opt/images/*
-
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
