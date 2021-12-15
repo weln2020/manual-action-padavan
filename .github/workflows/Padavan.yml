@@ -66,12 +66,12 @@ jobs:
         for m in ${{ github.event.inputs.production }}; do
           cp -f ./$m.config $TRUNK/configs/templates
         done
+        cp -f ./padavan.sh $TRUNK
+        cp -f ./defaults.h $TRUNK/user/shared
+        echo "defaults.h WIFI设置成功！"
         cd $TRUNK
         cp -f configs/templates/$m.config .config
         echo "$m.config 修改插件模板成功！"
-        cp -f ./defaults.h $TRUNK/user/shared
-        echo "defaults.h 替换成功！"
-        cp -f ./padavan.sh $TRUNK
         sudo chmod +x ./padavan.sh
         sudo ./padavan.sh
         echo "padavan.sh 自定义设置成功！"
