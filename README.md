@@ -10,7 +10,7 @@
 
 ![](https://img.shields.io/github/downloads/weln2020/manual-action-padavan/total)
 [![](https://img.shields.io/github/repo-size/weln2020/manual-action-padavan)](https://github.com/weln2020/manual-action-padavan)
-[![](https://img.shields.io/github/v/release/weln2020/manual-action-padavan)](https://github.com/weln2020/manual-action-padavan/releases/latest)
+[![](https://img.shields.io/github/release/weln2020/manual-action-padavan)](https://github.com/weln2020/manual-action-padavan/releases/latest)
 # 
 # 源码地址
 - https://github.com/weln2020/manual-action-padavan
