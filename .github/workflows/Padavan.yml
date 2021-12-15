@@ -1,4 +1,4 @@
-name: Padavan云编译
+name: Padavan手动云编译
 
 on:
   workflow_dispatch:
