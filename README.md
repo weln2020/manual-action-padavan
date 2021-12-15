@@ -4,7 +4,7 @@
 # 状态：[WELN2020](https://github.com/weln2020/manual-action-padavan)
 
 
-[![](https://github.com/weln2020/manual-action-padavan/actions/workflows/Padavan.yml/badge.svg)](https://github.com/weln2020/manual-action-padavan/blob/main/.github/workflows/Padavan.yml)
+[![](https://github.com/weln2020/manual-action-padavan/actions/workflows/Padavan.yml?label=源码)](https://github.com/weln2020/manual-action-padavan/blob/main/.github/workflows/Padavan.yml)
 [![提交](https://img.shields.io/github/last-commit/weln2020/manual-action-padavan)](https://github.com/weln2020/manual-action-padavan/actions/workflows/Padavan.yml)
 [![发布](https://img.shields.io/github/release-date/weln2020/manual-action-padavan)](https://github.com/weln2020/manual-action-padavan/releases)
 
