@@ -20,7 +20,7 @@
 >- 4.https://github.com/immortalwrt/padavan.git
 
 # 修改的文件
-脚本执行目录在 /opt/rt-n56u/trunk
-默认参数在 ./user/shared/defaults.h
-WEB页面显示 ./user/www/n56u_ribbon_fixed/state.js
-版本信息在 ./versions.inc
+ 脚本执行目录在 /opt/rt-n56u/trunk
+ 默认参数在 ./user/shared/defaults.h
+ WEB页面显示 ./user/www/n56u_ribbon_fixed/state.js
+ 版本信息在 ./versions.inc
