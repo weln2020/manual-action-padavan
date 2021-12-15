@@ -4,11 +4,12 @@
 # 状态：[WELN2020](https://github.com/weln2020/manual-action-padavan)
 
 
-![workflow](https://github.com/weln2020/manual-action-padavan/actions/workflows/Padavan.yml/badge.svg)
+[![workflow](https://github.com/weln2020/manual-action-padavan/actions/workflows/Padavan.yml/badge.svg)](https://github.com/weln2020/manual-action-padavan/actions/workflows/Padavan.yml)
 ![GitHub all releases](https://img.shields.io/github/downloads/weln2020/manual-action-padavan/total?label=下载量)
-[![GitHub repo size](https://img.shields.io/github/repo-size/weln2020/manual-action-padavan?label=库大小)](https://github.com/weln2020/manual-action-padavan)
 
+[![GitHub repo size](https://img.shields.io/github/repo-size/weln2020/manual-action-padavan?label=库大小)](https://github.com/weln2020/manual-action-padavan)
 [![](https://img.shields.io/github/last-commit/weln2020/manual-action-padavan?label=最近提交)](https://github.com/weln2020/manual-action-padavan/actions)
+
 [![GitHub Release Date](https://img.shields.io/github/release-date/weln2020/manual-action-padavan?label=最新发布)](https://github.com/weln2020/manual-action-padavan/releases)
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/weln2020/manual-action-padavan?label=最新版本)](https://github.com/weln2020/manual-action-padavan/releases/latest)
 # 
