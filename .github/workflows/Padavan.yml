@@ -99,7 +99,6 @@ jobs:
         popd
         echo >> readme.txt
         echo md5校验值： >> readme.txt
-        cd $IMAGES
         for m in *.trx
         do
           mv -f -v "$m" "${m%.*}_${{ env.DATE }}.trx"
