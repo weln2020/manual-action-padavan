@@ -111,16 +111,16 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: ${{ env.NAME }}
-        path: /opt/images
+        path: ${{ env.IMAGES }}
     - name: 发布固件到Release
       if: ${{ github.event.inputs.release == 'yes' }}
       uses: softprops/action-gh-release@v1
       with:
         name: ${{ env.NAME }}
         tag_name: ${{ env.DATE }}
-        body_path: /opt/images/readme.txt
+        body_path: ${{ env.IMAGES }}/readme.txt
         draft: false
         prerelease: false
-        files: /opt/images/*
+        files: ${{ env.IMAGES }}/*
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
