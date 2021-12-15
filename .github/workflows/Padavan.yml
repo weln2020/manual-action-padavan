@@ -20,14 +20,18 @@ on:
         default: 'yes'
         required: false
 
+env:
+  IMAGES: /opt/images
+  RT-N56U: /opt/rt-n56u
+  TRUNK: /opt/rt-n56u/trunk
+
 jobs:
   build:
     runs-on: ubuntu-20.04
     if: github.event.repository.owner.id == github.event.sender.id
     steps:
     - name: 同步主存储库
-      uses: actions/checkout@master
-      
+      uses: actions/checkout@master   
     - name: 初始环境设置
       env:
         DEBIAN_FRONTEND: noninteractive
@@ -49,10 +53,10 @@ jobs:
         ip addr
     - name: 下载源码
       run: |
-        mkdir -p /opt/images
-        echo 开始编译时间： >> /opt/images/readme.txt
-        TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S' >> /opt/images/readme.txt
-        git clone --depth=1 ${{ github.event.inputs.cloneurl }} /opt/rt-n56u > /dev/null
+        mkdir -p $IMAGES
+        echo 开始编译时间： >> $IMAGES/readme.txt
+        TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S' >> $IMAGES/readme.txt
+        git clone --depth=1 ${{ github.event.inputs.cloneurl }} $RT-N56U > /dev/null
         cd /opt/rt-n56u/toolchain-mipsel
         sh dl_toolchain.sh > /dev/null
         pwd
@@ -60,40 +64,41 @@ jobs:
       if: ${{ github.event.inputs.modify == 'yes' }}
       run: |
         for m in ${{ github.event.inputs.production }}; do
-          cp -f $m/$m.config /opt/rt-n56u/trunk/configs/templates/$m.config
-          cp -f $m/$m.sh /opt/rt-n56u/trunk
-          cd /opt/rt-n56u/trunk
-          cp -f configs/templates/$m.config .config
-          echo "$m.config 修改插件模板成功！"
-          sudo chmod +x ./$m.sh
-          sudo ./$m.sh
-          echo "$m.sh 自定义设置成功！"
+          cp -f ./$m.config $TRUNK/configs/templates
         done
+        cp -f ./padavan.sh $TRUNK
+        cp -f ./defaults.h $TRUNK/user/shared
+        echo "defaults.h 替换成功！"
     - name: 开始编译
       run: |
-        cd /opt/rt-n56u/trunk
+        cd $TRUNK
+        cp -f configs/templates/$m.config .config
+        echo "$m.config 修改插件模板成功！"
+        sudo chmod +x ./padavan.sh
+        sudo ./padavan.sh
+        echo "padavan.sh 自定义设置成功！"
         for m in ${{ github.event.inputs.production }}; do
           echo "::group::开始编译 ${m}..."
           sudo ./clear_tree || echo
           sudo ./build_firmware_modify $m > /dev/null
           ls -l images
-          sudo mv -f images/*.trx /opt/images
+          sudo mv -f images/*.trx $IMAGES
           echo "::endgroup::"
         done
     - name: 收集信息
       run: |
-        cd /opt/images
+        cd $IMAGES
         echo 完成编译时间： >> readme.txt
         TZ='Asia/Shanghai'  date  '+%Y-%m-%d %H:%M:%S' >> readme.txt
         echo >> readme.txt
         echo 源码信息： >> readme.txt
-        pushd /opt/rt-n56u
-        git ls-remote --get-url origin >> /opt/images/readme.txt
-        git log --shortstat >> /opt/images/readme.txt
+        pushd $RT-N56U
+        git ls-remote --get-url origin >> $IMAGES/readme.txt
+        git log --shortstat >> $IMAGES/readme.txt
         popd
         echo >> readme.txt
         echo md5校验值： >> readme.txt
-        cd /opt/images
+        cd $IMAGES
         for m in *.trx
         do
           mv -f -v "$m" "${m%.*}_${{ env.DATE }}.trx"
@@ -105,16 +110,16 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: ${{ env.NAME }}
-        path: /opt/images
+        path: $IMAGES
     - name: 发布固件到Release
       if: ${{ github.event.inputs.release == 'yes' }}
       uses: softprops/action-gh-release@v1
       with:
         name: ${{ env.NAME }}
         tag_name: ${{ env.DATE }}
-        body_path: /opt/images/readme.txt
+        body_path: $IMAGES/readme.txt
         draft: false
         prerelease: false
-        files: /opt/images/*
+        files: $IMAGES/*
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
