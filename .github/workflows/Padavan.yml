@@ -77,7 +77,7 @@ jobs:
         echo "padavan.sh 自定义设置成功！"
     - name: 开始编译
       run: |
-        cd $TRUNK
+
         for m in ${{ github.event.inputs.production }}; do
           echo "::group::开始编译 ${m}..."
           sudo ./clear_tree || echo
