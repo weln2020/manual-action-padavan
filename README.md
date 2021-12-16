@@ -18,7 +18,6 @@
 >
 >3.在弹出的窗口里填写"编译参数" 点击 `Run workflow` 开始云编译
 >
-![](https://github.com/weln2020/manual-action-padavan/raw/master/Run%20workflow.png)
 
 
 ## 源码地址
