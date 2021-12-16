@@ -1,4 +1,4 @@
-# 状态：[WELN2020](https://github.com/weln2020/manual-action-padavan)
+# 状态：[WELN2020](https://github.com/weln2020/manual-action-padavan "manual-action-padavan")
 [![](https://img.shields.io/github/downloads/weln2020/manual-action-padavan/total?label=下载量)](https://github.com/weln2020)
 [![](https://img.shields.io/github/stars/weln2020/manual-action-padavan?label=加星量)](https://github.com/weln2020?tab=stars)
 [![](https://img.shields.io/github/repo-size/weln2020/manual-action-padavan?label=库大小)](https://github.com/weln2020/manual-action-padavan)
