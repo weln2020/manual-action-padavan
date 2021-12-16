@@ -15,13 +15,6 @@
 >
 >3. 在弹出的窗口里填写"编译参数" 点击 `Run workflow` 开始云编译
 
-## 源码地址
-**下为Padavan源码地址 复制到"编译参数"中即可：**
->- 1.https://github.com/hanwckf/rt-n56u.git
->- 2.https://github.com/chongshengB/rt-n56u.git
->- 3.https://github.com/padavanonly/rt-n56u.git
->- 4.https://github.com/immortalwrt/padavan.git
-
 ## 自定义文件
 **采用替换方式修改源码 注意对照源码相应文件进行编写：**
 > 1.`XXX.config` **插件模板** | -- `/configs/templates/XXX.config`
@@ -31,3 +24,12 @@
 > 3.`padavan.sh` **脚本执行** | -- `/opt/rt-n56u/trunk`
 >                  **WEB页面显示** ./user/www/n56u_ribbon_fixed/state.js
 >                  **固件版本号在** ./versions.inc
+
+## 源码地址
+**下为Padavan源码地址 复制到"编译参数"中即可：**
+```shell
+>- 1.https://github.com/hanwckf/rt-n56u.git
+```
+>- 2.https://github.com/chongshengB/rt-n56u.git
+>- 3.https://github.com/padavanonly/rt-n56u.git
+>- 4.https://github.com/immortalwrt/padavan.git
