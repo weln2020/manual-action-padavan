@@ -13,16 +13,16 @@
 [![](https://github.com/weln2020/manual-action-padavan/actions/workflows/Padavan.yml/badge.svg)](https://github.com/weln2020/manual-action-padavan/actions/workflows/Padavan.yml)
 [![](https://img.shields.io/github/v/release/weln2020/manual-action-padavan?label=编译日期)](https://github.com/weln2020/manual-action-padavan/releases)
 
-## 源码地址
+### 源码地址
 
 - 1.https://github.com/hanwckf/rt-n56u.git
 - 2.https://github.com/chongshengB/rt-n56u.git
 - 3.https://github.com/padavanonly/rt-n56u.git
 - 4.https://github.com/immortalwrt/padavan.git
 
-## 修改的文件
+### 修改的文件
 
- 1. 脚本执行目录在 /opt/rt-n56u/trunk
+ 1. ``脚本执行目录在`` /opt/rt-n56u/trunk
  2. 默认参数在 ./user/shared/defaults.h
  3. WEB页面显示 ./user/www/n56u_ribbon_fixed/state.js
  4. 版本信息在 ./versions.inc
