@@ -15,8 +15,8 @@
 
 ## 使用方法
 
-  1. **Fork** 复制源码到自己的仓库
-  2. **Actions** **Padavan手动云编译** **Run workflow** 设置编译选项后开始云编译
+1. **Fork** 复制源码到自己的仓库
+2. **Actions** **Padavan手动云编译** **Run workflow** 设置编译选项后开始云编译
 
 
 ## 源码地址
@@ -28,7 +28,7 @@
 
 ## 修改的文件
 
-  1. ``脚本执行目录在`` /opt/rt-n56u/trunk
-  2. **默认参数在** ./user/shared/defaults.h
-  3. **WEB页面显示** ./user/www/n56u_ribbon_fixed/state.js
-  4. 版本信息在 ./versions.inc
+1. ``脚本执行目录在`` /opt/rt-n56u/trunk
+2. **默认参数在** ./user/shared/defaults.h
+3. **WEB页面显示** ./user/www/n56u_ribbon_fixed/state.js
+4. 版本信息在 ./versions.inc
