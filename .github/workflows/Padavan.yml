@@ -64,7 +64,7 @@ jobs:
       if: ${{ github.event.inputs.modify == 'yes' }}
       run: |
         for m in ${{ github.event.inputs.production }}; do
-          cp -f ./$m.config $TRUNK/configs/templates
+          cp -f config/$m.config $TRUNK/configs/templates
         done
         cp -f ./padavan.sh $TRUNK
         cp -f ./defaults.h $TRUNK/user/shared
