@@ -1,7 +1,7 @@
-# manual-action-padavan 使用方法
+# 使用方法
 
->Padavan手动云编译 内含自定义文件 无需Fork修改源码 
--
+　　Padavan手动云编译 内含自定义文件 无需Fork修改源码 
+---
 1.点击 `Fork` 复制到自己的仓库 修改机型"自定义文件"
 
 2.依次点击 `Actions`→`Padavan手动云编译`→`Run workflow ▼`
