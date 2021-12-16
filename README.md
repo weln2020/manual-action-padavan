@@ -7,6 +7,8 @@
 [![](https://github.com/weln2020/manual-action-padavan/actions/workflows/Padavan.yml/badge.svg)](https://github.com/weln2020/manual-action-padavan/actions/workflows/Padavan.yml)
 [![](https://img.shields.io/github/v/release/weln2020/manual-action-padavan?label=编译日期)](https://github.com/weln2020/manual-action-padavan/releases)
 
+代码参考：![HuaZhuangNan](https://github.com/HuaZhuangNan/actions-build-padavan-openwrt)![chongshengB](https://github.com/chongshengB/rt-n56u)![tick-guo](https://github.com/tick-guo/router-rom)
+
 ## 使用方法
 **Padavan手动云编译工作流 可同时编译多个固件 内含自定义文件 无需Fork修改源码：**
 >1. 点击 `Fork` 复制到自己的仓库 修改机型"自定义文件"
@@ -26,7 +28,7 @@
 >                  **固件版本号在** ./versions.inc
 
 ## 源码地址
-**下为Padavan源码地址 复制到"编译参数"中即可：**
+**常用Padavan源码地址 复制到"编译参数"中即可：**
 >- 1.`hanwckf`　　https://github.com/hanwckf/rt-n56u.git
 >- 2.`chongshengB` https://github.com/chongshengB/rt-n56u.git
 >- 3.`padavanonly` https://github.com/padavanonly/rt-n56u.git
