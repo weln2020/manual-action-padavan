@@ -24,9 +24,9 @@
 
 ## 自定义文件
 **采用替换方式修改源码 注意对照源码相应文件进行编写：**
-> 1.`XXX.config` **插件模板位置在** | -- `/configs/templates/XXX.config`
+> 1.`XXX.config` **插件模板位置在** | -- `configs/templates/XXX.config`
 >
-> 2.`defaults.h` **默认参数位置在** | -- `./user/shared/defaults.h`
+> 2.`defaults.h` **默认参数位置在** | -- `user/shared/defaults.h`
 >
 > 3.`padavan.sh` **脚本执行目录在** | -- `/opt/rt-n56u/trunk`
 >                  **WEB页面显示** ./user/www/n56u_ribbon_fixed/state.js
