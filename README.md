@@ -17,10 +17,10 @@
 
 ## 源码地址
 **下为Padavan源码地址 复制到"编译参数"中即可：**
->- 1. https://github.com/hanwckf/rt-n56u.git
->- 2. https://github.com/chongshengB/rt-n56u.git
->- 3. https://github.com/padavanonly/rt-n56u.git
->- 4. https://github.com/immortalwrt/padavan.git
+>- 1.https://github.com/hanwckf/rt-n56u.git
+>- 2.https://github.com/chongshengB/rt-n56u.git
+>- 3.https://github.com/padavanonly/rt-n56u.git
+>- 4.https://github.com/immortalwrt/padavan.git
 
 ## 自定义文件
 **采用替换方式修改源码 注意对照源码相应文件进行编写：**
