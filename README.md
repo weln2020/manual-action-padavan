@@ -1,6 +1,6 @@
 # manual-action-padavan
 
-- Padavan 手动云编译 内含自定义文件 无需Fork修改源码：
+- Padavan 手动云编译 内含自定义文件 无需Fork修改源码 
 
 ## 状态：[WELN2020](https://github.com/weln2020/manual-action-padavan)
 
@@ -13,7 +13,13 @@
 [![](https://github.com/weln2020/manual-action-padavan/actions/workflows/Padavan.yml/badge.svg)](https://github.com/weln2020/manual-action-padavan/actions/workflows/Padavan.yml)
 [![](https://img.shields.io/github/v/release/weln2020/manual-action-padavan?label=编译日期)](https://github.com/weln2020/manual-action-padavan/releases)
 
-### 源码地址
+## 使用方法
+
+  1.**Fork** 复制源码到自己的仓库
+  2.**Actions** **Padavan手动云编译** **Run workflow** 设置编译选项后开始云编译
+
+
+## 源码地址
 
 - 1.https://github.com/hanwckf/rt-n56u.git
 - 2.https://github.com/chongshengB/rt-n56u.git
