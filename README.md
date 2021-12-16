@@ -17,7 +17,7 @@
 
     1.点击 "Fork" 复制到自己的仓库 修改机型自定义文件
     
-    2.依次点击 'Actions'→'Padavan手动云编译'→'Run workflow'
+    2.依次点击 [Actions]→[Padavan手动云编译]→[Run workflow]
     
     3.在弹出的窗口里 设置好编译选项后点击Run开始云编译
 
