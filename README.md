@@ -16,8 +16,8 @@
 ## 使用方法
 
     点击**Fork** 复制源码到自己的仓库
-    依次点击**Actions**→**Padavan手动云编译**→**Run workflow**
-    在弹出的窗口里 设置好编译选项后点击Run开始云编译
+依次点击**Actions**→**Padavan手动云编译**→**Run workflow**
+在弹出的窗口里 设置好编译选项后点击Run开始云编译
 
 
 ## 源码地址
