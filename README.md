@@ -29,7 +29,7 @@
 
 ## 源码地址
 **常用Padavan源码地址 复制到"编译参数"中即可：**
->- 1.`hanwckf`　　https://github.com/hanwckf/rt-n56u.git
+>- 1.`hanwckf`　　(https://github.com/hanwckf/rt-n56u.git "1")
 >- 2.`chongshengB` https://github.com/chongshengB/rt-n56u.git
 >- 3.`padavanonly` https://github.com/padavanonly/rt-n56u.git
 >- 4.`immortalwrt` https://github.com/immortalwrt/padavan.git
