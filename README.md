@@ -1,6 +1,6 @@
 # manual-action-padavan
 
->>Padavan 手动云编译 内含自定义文件 无需Fork修改源码 
+>Padavan手动云编译 内含自定义文件 无需Fork修改源码 
 
 ## 状态：[WELN2020](https://github.com/weln2020/manual-action-padavan)
 
@@ -15,9 +15,9 @@
 
 ## 使用方法
 
-    1.点击Fork 复制源码到自己的仓库
+    1.点击 'Fork' 复制到自己的仓库 修改机型自定义文件
     
-    2.依次点击Actions→Padavan手动云编译→Run workflow
+    2.依次点击 'Actions'→'Padavan手动云编译'→'Run workflow'
     
     3.在弹出的窗口里 设置好编译选项后点击Run开始云编译
 
