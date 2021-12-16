@@ -1,6 +1,12 @@
-# manual-action-padavan
+# manual-action-padavan 使用方法
 
 >Padavan手动云编译 内含自定义文件 无需Fork修改源码 
+-
+1.点击 `Fork` 复制到自己的仓库 修改机型"自定义文件"
+
+2.依次点击 `Actions`→`Padavan手动云编译`→`Run workflow ▼`
+
+3.在弹出的窗口里设置好"编译参数" 点击 `Run workflow` 开始云编译
 
 ## 状态：[WELN2020](https://github.com/weln2020/manual-action-padavan)
 
@@ -12,15 +18,6 @@
 
 [![](https://github.com/weln2020/manual-action-padavan/actions/workflows/Padavan.yml/badge.svg)](https://github.com/weln2020/manual-action-padavan/actions/workflows/Padavan.yml)
 [![](https://img.shields.io/github/v/release/weln2020/manual-action-padavan?label=编译日期)](https://github.com/weln2020/manual-action-padavan/releases)
-
-## 使用方法
-
-1.点击 `Fork` 复制到自己的仓库 修改机型"自定义文件"
-
-2.依次点击 `Actions`→`Padavan手动云编译`→`Run workflow ▼`
-
-3.在弹出的窗口里设置好"编译参数" 点击 `Run workflow` 开始云编译
-
 
 ## 源码地址
 
