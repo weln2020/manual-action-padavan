@@ -17,6 +17,8 @@
 >2.依次点击 `Actions`→`Padavan手动云编译`→`Run workflow ▼`
 >
 >3.在弹出的窗口里填写"编译参数" 点击 `Run workflow` 开始云编译
+![](https://github.com/weln2020/manual-action-padavan/blob/main/Run%20workflow.png)
+
 
 ## 源码地址
 
