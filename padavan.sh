@@ -1,7 +1,7 @@
 set -u
 
 echo "1.版本号添加时间"
-VERSION_TIME=$(TZ='Asia/Shanghai' date '+%Y%m%d')
+VERSION_TIME=$(date "+%Y%m%d")
 sed -i "s/FIRMWARE_BUILDS_REV=[0-9]*/FIRMWARE_BUILDS_REV=$VERSION_TIME/g" ./versions.inc
 
 echo "2.WEB页面添加个人信息"
