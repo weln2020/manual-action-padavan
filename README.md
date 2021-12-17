@@ -8,6 +8,8 @@
 [![](https://img.shields.io/github/v/release/weln2020/manual-action-padavan?label=编译日期)](https://github.com/weln2020/manual-action-padavan/releases)
 
 >代码参考：[tick-guo](https://github.com/tick-guo/router-rom "60%")　[HuaZhuangNan](https://github.com/HuaZhuangNan/actions-build-padavan-openwrt "40%")
+>
+>转载请注明出处 喜欢请点右上角 `Star` 给我加星
 
 ## 使用方法
 **Padavan手动云编译工作流 适用大部分源码 可同时编译多个固件 内含自定义文件 无需Fork修改源码：**
@@ -18,28 +20,24 @@
 >3.在弹出的窗口里填写"编译参数" 点击 `Run workflow` 开始云编译
 
 ## 自定义文件
-**3个自定义文件采用替换方式修改源码 注意对照源码内容进行适配：**
-
-**文件说明：**
-
+**文件结构说明：**
 ```
-├── configs
-│   ├── boards
-│   │   └── NEWIFI-D1 ---newifi-d1适配文件
-│   │       ├── board.h
-│   │       ├── board.mk
-│   │       ├── kernel-3.4.x.config
-│   │       └── libc.config -> ../uclibc-mipsel.config
-│   └── templates
-│       ├── newifi_d1_base.config ---newifi-d1简版配置
-│       └── newifi_d1_full.config ---newifi-d1完整版配置
-└── user
-    └── www
-        ├── dict
-        │   └── CN.dict ---简体中文语言文件
-        └── Makefile
+├──.github/workflows ---github工作流
+│   └──Padavan.yml ---云编译代码
+│
+├── config ---插件模板
+│   ├── K2P.config  ---K2P 插件开关
+│   ├── PSG1218.config ---K2 插件开关
+│   ├── MSG1500.config ---MSG1500 插件开关
+│   └── XXX.config ---[参照源码适配机型增添]
+│
+├── README.md ---说明文件
+│
+├── defaults.h ---默认参数
+│
+└── padavan.sh ---自定义脚本
 ```
-
+**自定义文件采用替换方式修改源码 注意对照源码内容进行编写：**
 | 文件名 | 源码位置 |
 |:------:|----------|
 |　`XXX.config`　|**插件模板：**`/configs/templates/XXX.config`|
@@ -54,4 +52,4 @@
 >- 4.[https://github.com/immortalwrt/padavan.git](https://github.com/immortalwrt/padavan.git "immortalwrt KVR及细节")
 
 ## 关注趋势
-[![Stargazers over time](https://starchart.cc/weln2020/manual-action-padavan.svg)](https://github.com/weln2020?tab=repositories)
+[![Stargazers over time](https://starchart.cc/weln2020/manual-action-padavan.svg)](https://github.com/weln2020?tab=repositories"始于2021年12月")
