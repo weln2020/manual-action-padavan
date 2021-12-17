@@ -20,6 +20,26 @@
 ## 自定义文件
 **3个自定义文件采用替换方式修改源码 注意对照源码内容进行适配：**
 
+**文件说明：**
+
+```
+├── configs
+│   ├── boards
+│   │   └── NEWIFI-D1 ---newifi-d1适配文件
+│   │       ├── board.h
+│   │       ├── board.mk
+│   │       ├── kernel-3.4.x.config
+│   │       └── libc.config -> ../uclibc-mipsel.config
+│   └── templates
+│       ├── newifi_d1_base.config ---newifi-d1简版配置
+│       └── newifi_d1_full.config ---newifi-d1完整版配置
+└── user
+    └── www
+        ├── dict
+        │   └── CN.dict ---简体中文语言文件
+        └── Makefile
+```
+
 | 文件名 | 源码位置 |
 |:------:|----------|
 |　`XXX.config`　|**插件模板：**`/configs/templates/XXX.config`|
@@ -32,3 +52,6 @@
 >- 2.[https://github.com/chongshengB/rt-n56u.git](https://github.com/chongshengB/rt-n56u.git "chongshengB 优秀插件")
 >- 3.[https://github.com/padavanonly/rt-n56u.git](https://github.com/padavanonly/rt-n56u.git "padavanonly 支持KVR")
 >- 4.[https://github.com/immortalwrt/padavan.git](https://github.com/immortalwrt/padavan.git "immortalwrt KVR及细节")
+
+## 关注趋势
+[![Stargazers over time](https://starchart.cc/weln2020/manual-action-padavan.svg)](https://github.com/weln2020?tab=repositories)
