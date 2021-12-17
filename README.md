@@ -27,8 +27,8 @@
 │
 ├── config ---插件模板
 │   ├── K2P.config  ---K2P 插件开关
-│   ├── PSG1218.config ---K2 插件开关
 │   ├── MSG1500.config ---MSG1500 插件开关
+│   ├── PSG1218.config ---K2 插件开关
 │   └── XXX.config ---[参照源码适配机型增添]
 │
 ├── README.md ---说明文件
