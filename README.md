@@ -22,20 +22,20 @@
 ## 自定义文件
 **文件结构说明：**
 ```
-├──.github/workflows ---github工作流
-│   └──Padavan.yml ---云编译代码
+├──.github/workflows  ---github工作流
+│   └──Padavan.yml  ---云编译代码
 │
 ├── config ---插件模板
 │   ├── K2P.config  ---K2P 插件开关
-│   ├── MSG1500.config ---MSG1500 插件开关
-│   ├── PSG1218.config ---K2 插件开关
-│   └── XXX.config ---[参照源码适配机型增添]
+│   ├── MSG1500.config  ---MSG1500 插件开关
+│   ├── PSG1218.config  ---K2 插件开关
+│   └── XXX.config  ---[参照源码适配机型增添]
 │
-├── README.md ---说明文件
+├── README.md  ---说明文件
 │
-├── defaults.h ---默认参数
+├── defaults.h  ---默认参数
 │
-└── padavan.sh ---自定义脚本
+└── padavan.sh  ---自定义脚本
 ```
 **自定义文件采用替换方式修改源码 注意对照源码内容进行编写：**
 | 文件名 | 源码位置 |
