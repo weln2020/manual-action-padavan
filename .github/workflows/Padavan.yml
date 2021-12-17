@@ -66,13 +66,13 @@ jobs:
         for m in ${{ github.event.inputs.production }}; do
           cp -f config/$m.config $TRUNK/configs/templates
         done
-        cp -f ./versions.inc $TRUNK
         cp -f ./defaults.h $TRUNK/user/shared
         cd $TRUNK
         cp -f configs/templates/$m.config .config
-        valtime=$(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M')
-        val1="\\1 footer_code +='编译日期: $valtime by <a href=\"https://github.com/weln2020/manual-action-padavan\" target=\"blank\">WELN</a> \& <a href=\"https://www.right.com.cn/forum/thread-6896728-1-1.html\" target=\"blank\">恩山论坛</a><br>';"
-        sed -i "s#\(.*Non-Commercial Use Only[^;]*;\).*#$val1#" user/www/n56u_ribbon_fixed/state.js
+        valtime="\\1 footer_code +='编译日期: ${{ env.DATE }} by <a href=\"https://github.com/weln2020/manual-action-padavan\" target=\"blank\">WELN</a> \& <a href=\"https://www.right.com.cn/forum/thread-6896728-1-1.html\" target=\"blank\">恩山论坛</a><br>';"
+        sed -i "s#\(.*Non-Commercial Use Only[^;]*;\).*#$valtime#" user/www/n56u_ribbon_fixed/state.js
+        sed -i "s/FIRMWARE_BUILDS_REV=[0-9]*/FIRMWARE_BUILDS_REV= ${{ env.DATE }}/g" ./versions.inc
+        
     - name: 开始编译
       run: |
         cd $TRUNK
