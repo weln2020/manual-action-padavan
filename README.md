@@ -24,7 +24,11 @@
 | -------------------------------| ----------------------------- |
 | 1.`XXX.config` **插件模板**   | `/configs/templates/XXX.config`|
 | 2.`defaults.h` **默认参数**   | `/user/shared/defaults.h` |
+| -------------------------------| ----------------------------- |
+
 | 3.`padavan.sh` **脚本执行**   | `/opt/rt-n56u/trunk` |
+
+| -------------------------------| ----------------------------- |
 |               **WEB页面显示**  | `/user/www/n56u_ribbon_fixed/state.js` |
 |               **固件版本号在**   | `./versions.inc` |
 > 1.`XXX.config` **插件模板** | -- `/configs/templates/XXX.config`
