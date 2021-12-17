@@ -2,13 +2,13 @@ set -u
 
 echo "1.版本号添加时间"
 VERSION_TIME=$(date "+%Y%m%d")
-sed -i "s/FIRMWARE_BUILDS_REV=[0-9]*/FIRMWARE_BUILDS_REV=$VERSION_TIME/g" ./versions.inc
+sed -i "s/FIRMWARE_BUILDS_REV=*[0-9]*/FIRMWARE_BUILDS_REV=$VERSION_TIME/g" ./versions.inc
 
 echo "2.WEB页面添加个人信息"
 valtime=$(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M')
 val1="\\1 footer_code +='编译日期 $valtime by <a href=\"https://github.com/weln2020/manual-action-padavan\" target=\"blank\">WELN</a> \& <a href=\"https://www.right.com.cn/forum/thread-6896728-1-1.html\" target=\"blank\">恩山论坛</a><br>';"
 sed -i "s#\(.*Non-Commercial Use Only[^;]*;\).*#$val1#" ./user/www/n56u_ribbon_fixed/state.js
-grep "Non-Commercial Use Only" ./user/www/n56u_ribbon_fixed/state.js
+# grep "Non-Commercial Use Only" ./user/www/n56u_ribbon_fixed/state.js
 
 echo "3.删除默认配置项"
 sed -i 's/CONFIG_FIRMWARE_INCLUDE_OPENSSL_EXE=n/CONFIG_FIRMWARE_INCLUDE_OPENSSL_EXE=y/g' .config
