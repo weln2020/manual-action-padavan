@@ -3,9 +3,9 @@
 
 #include <ralink_board.h>
 
-#define SYS_SHELL		        "/bin/sh"
-#define SYS_EXEC_PATH		    "/usr/sbin:/usr/bin:/sbin:/bin"
-#define SYS_EXEC_PATH_OPT  	"/opt/sbin:/opt/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+#define SYS_SHELL	"/bin/sh"
+#define SYS_EXEC_PATH	"/usr/sbin:/usr/bin:/sbin:/bin"
+#define SYS_EXEC_PATH_OPT	"/opt/sbin:/opt/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 #define SYS_HOME_PATH_ROOT	"/home/admin"
 
 #define SYS_USER_ROOT		  "admin"
@@ -20,7 +20,7 @@
 
 #define DEF_WLAN_2G_CC		"CN"
 #define DEF_WLAN_5G_CC		"US"
-#define DEF_WLAN_2G_SSID  "2.4G"
+#define DEF_WLAN_2G_SSID	"2.4G"
 #define DEF_WLAN_5G_SSID	"5G"
 #define DEF_WLAN_2G_GSSID	BOARD_PID "_GUEST_%s"
 #define DEF_WLAN_5G_GSSID	BOARD_PID "_GUEST_5G_%s"
