@@ -47,7 +47,7 @@
 ## 源码地址
 **常用Padavan源码地址 复制到"编译参数"中即可：**
 >- 1.[https://github.com/hanwckf/rt-n56u.git](https://github.com/hanwckf/rt-n56u.git "hanwckf 最新源码")
->- 2.[https://github.com/chongshengB/rt-n56u.git](https://github.com/chongshengB/rt-n56u.git "chongshengB 优秀插件")
+>- 2.[https://github.com/chongshengB/rt-n56u.git](https://github.com/chongshengB/rt-n56u.git "chongshengB 众多插件")
 >- 3.[https://github.com/padavanonly/rt-n56u.git](https://github.com/padavanonly/rt-n56u.git "padavanonly 支持KVR")
 >- 4.[https://github.com/immortalwrt/padavan.git](https://github.com/immortalwrt/padavan.git "immortalwrt KVR及细节")
 
