@@ -52,4 +52,4 @@
 >- 4.[https://github.com/immortalwrt/padavan.git](https://github.com/immortalwrt/padavan.git "immortalwrt KVR及细节")
 
 ## 关注趋势
-[![Stargazers over time](https://starchart.cc/weln2020/manual-action-padavan.svg)](https://github.com/weln2020?tab=repositories"始于2021年12月")
+[![Stargazers over time](https://starchart.cc/weln2020/manual-action-padavan.svg)](https://github.com/weln2020?tab=repositories "始于2021年12月")
