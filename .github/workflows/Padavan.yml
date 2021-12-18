@@ -30,15 +30,12 @@ env:
 jobs:
   build:
     runs-on: ubuntu-20.04
-    if: github.event.repository.owner.id == github.event.sender.id
     steps:
     - name: 同步主存储库
       uses: actions/checkout@master   
     - name: 初始环境设置
-      env:
-        DEBIAN_FRONTEND: noninteractive
       run: |
-        sudo apt-get update
+        # sudo apt-get update
         sudo apt install unzip libtool-bin curl cmake gperf gawk flex bison nano xxd \
         fakeroot kmod cpio git python3-docutils gettext automake autopoint \
         texinfo build-essential help2man pkg-config zlib1g-dev libgmp3-dev \
@@ -61,7 +58,6 @@ jobs:
         git clone --depth=1 ${{ github.event.inputs.cloneurl }} $RT_N56U > /dev/null
         cd $RT_N56U/toolchain-mipsel
         sh dl_toolchain.sh > /dev/null
-        pwd
     - name: 自定义配置
       if: ${{ github.event.inputs.modify == 'yes' }}
       run: |
