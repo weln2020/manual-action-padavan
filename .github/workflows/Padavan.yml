@@ -71,7 +71,7 @@ jobs:
         cp -f configs/templates/$m.config .config
         valtime="\\1 footer_code +='编译日期： ${{ env.DATE }} by <a href=\"https://github.com/weln2020/manual-action-padavan\" target=\"blank\">WELN</a> \& <a href=\"https://www.right.com.cn/forum/thread-6896728-1-1.html\" target=\"blank\">恩山论坛</a><br>';"
         sed -i "s#\(.*Non-Commercial Use Only[^;]*;\).*#$valtime#" user/www/n56u_ribbon_fixed/state.js
-        sed -i "s/FIRMWARE_BUILDS_REV=[0-9]*/FIRMWARE_BUILDS_REV=$(date +%Y%m%d)/g" ./versions.inc
+        sed -i "s/FIRMWARE_BUILDS_REV=[0-9]*/FIRMWARE_BUILDS_REV=$(date "+%Y%m%d")/g" ./versions.inc
     - name: 开始编译
       run: |
         cd $TRUNK
