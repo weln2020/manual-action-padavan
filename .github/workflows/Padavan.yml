@@ -5,11 +5,11 @@ on:
     inputs:
       production:
         description: 设置固件型号：
-        default: "K2P PSG1218"
+        default: "K2P"
         required: false
       cloneurl:
         description: 设置源码地址：
-        default: "https://github.com/hanwckf/rt-n56u.git"
+        default: "https://github.com/padavanonly/rt-n56u.git"
         required: false
       modify:
         description: 是否应用自定义配置？
