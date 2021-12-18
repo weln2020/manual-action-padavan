@@ -35,7 +35,7 @@ jobs:
       uses: actions/checkout@master   
     - name: 初始环境设置
       run: |
-        # sudo apt-get update
+        sudo apt-get update
         sudo apt install unzip libtool-bin curl cmake gperf gawk flex bison nano xxd \
         fakeroot kmod cpio git python3-docutils gettext automake autopoint \
         texinfo build-essential help2man pkg-config zlib1g-dev libgmp3-dev \
