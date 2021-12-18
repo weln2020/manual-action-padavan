@@ -24,6 +24,8 @@ env:
   IMAGES: /opt/images
   RT_N56U: /opt/rt-n56u
   TRUNK: /opt/rt-n56u/trunk
+  URL1: "https://github.com/weln2020/manual-action-padavan"
+  URL2: "https://www.right.com.cn/forum/thread-6896728-1-1.html"
 
 jobs:
   build:
@@ -66,11 +68,11 @@ jobs:
         for m in ${{ github.event.inputs.production }}; do
           cp -f config/$m.config $TRUNK/configs/templates
         done
-        # cp -f ./defaults.h $TRUNK/user/shared
-        cp -rf ./trunk/ $TRUNK
+        cp -f ./defaults.h $TRUNK/user/shared
+        cp -f ./versions.inc $TRUNK
         cd $TRUNK
         cp -f configs/templates/$m.config .config
-        valtime="\\1 footer_code +='编译日期: ${{ env.DATE }} by <a href=\"https://github.com/weln2020/manual-action-padavan\" target=\"blank\">WELN</a> \& <a href=\"https://www.right.com.cn/forum/thread-6896728-1-1.html\" target=\"blank\">恩山论坛</a><br>';"
+        valtime="\\1 footer_code +='编译日期: ${{ env.DATE }} by <a href=\"$URL1\" target=\"blank\">WELN</a> \& <a href=\"$URL2\" target=\"blank\">恩山论坛</a><br>';"
         sed -i "s#\(.*Non-Commercial Use Only[^;]*;\).*#$valtime#" user/www/n56u_ribbon_fixed/state.js
     - name: 开始编译
       run: |
