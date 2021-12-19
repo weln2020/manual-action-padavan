@@ -45,14 +45,14 @@
 │
 └── versions.inc  --- 固件版本
 ```
-**自定义文件采用替换方式修改源码 注意对照源码内容进行编写：**
+**自定义文件采用替换方式修改源码 注意对照源码内容进行编写 修改的地方有以下4处：**
 | 文件名 | 源码位置 |
 |:------:|----------|
 |　**以下内容执行目录：** | `/opt/rt-n56u/trunk` |
-|　**插件模板：**`XXX.config`　| `/configs/templates/XXX.config` |
-|　**默认参数：**`defaults.h`　| `/user/shared/defaults.h` |
-|　**固件版本：**`versions.inc` | `./versions.inc` |
-|　**WEB页底内容：**`state.js` | `/user/www/n56u_ribbon_fixed/state.js` |
+|　**1.插件模板：**`XXX.config`　| `/configs/templates/XXX.config` |
+|　**2.固件版本：**`versions.inc` | `./versions.inc` |
+|　**3.默认参数：**`defaults.h`　| `/user/shared/defaults.h` |
+|　**4.WEB页底内容：**`state.js` | `/user/www/n56u_ribbon_fixed/state.js` |
 
 ## 关注趋势
 [![Stargazers over time](https://starchart.cc/weln2020/manual-action-padavan.svg)](https://github.com/weln2020?tab=repositories "始于2021年12月")
