@@ -48,9 +48,11 @@
 **自定义文件采用替换方式修改源码 注意对照源码内容进行编写：**
 | 文件名 | 源码位置 |
 |:------:|----------|
-|　`XXX.config`　|**插件模板：**`/configs/templates/XXX.config`|
-|　`defaults.h`　|**默认参数：**`/user/shared/defaults.h`|
-|　`padavan.sh`　|**脚本执行目录：**`/opt/rt-n56u/trunk`<br>**WEB页面内容：**`/user/www/n56u_ribbon_fixed/state.js`<br>**固件版本号：**`./versions.inc`|
+|　**以下内容执行目录：** | `/opt/rt-n56u/trunk` |
+|　**插件模板：**`XXX.config`　| `/configs/templates/XXX.config` |
+|　**默认参数：**`defaults.h`　| `/user/shared/defaults.h` |
+|　**固件版本：**`versions.inc` | `./versions.inc` |
+|　**WEB页面内容：**`state.js` | `/user/www/n56u_ribbon_fixed/state.js` |
 
 ## 关注趋势
 [![Stargazers over time](https://starchart.cc/weln2020/manual-action-padavan.svg)](https://github.com/weln2020?tab=repositories "始于2021年12月")
