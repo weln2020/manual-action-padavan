@@ -68,7 +68,7 @@ jobs:
         cp -f ./versions.inc $TRUNK
         cd $TRUNK
         cp -f configs/templates/$m.config .config
-        valtime="\\1 footer_code +='编译日期: ${{ env.DATE }} by <a href=\"$URL1\" target=\"blank\">WELN</a> \& <a href=\"$URL2\" target=\"blank\">恩山论坛</a> \& <a href=\"${{ github.event.inputs.cloneurl }}\" target=\"blank\">${{ github.event.inputs.production }}源码</a><br>';"
+        valtime="\\1 footer_code +='编译日期: ${{ env.DATE }} by <a href=\"$URL1\" target=\"blank\">WELN</a> \& <a href=\"$URL2\" target=\"blank\">恩山论坛</a> \& <a href=\"${{ github.event.inputs.cloneurl }}\" target=\"blank\">源代码</a><br>';"
         sed -i "s#\(.*Non-Commercial Use Only[^;]*;\).*#$valtime#" user/www/n56u_ribbon_fixed/state.js
     - name: 开始编译
       run: |
