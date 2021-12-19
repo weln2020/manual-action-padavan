@@ -31,7 +31,7 @@
 **文件结构说明：**
 ```
 ├──.github/workflows  --- github工作流
-│   └──Padavan.yml  --- 云编译代码
+│   └──Padavan.yml  --- 云编译代码(修改：WEB页底内容)
 │
 ├── config ---插件模板
 │   ├── K2P.config  --- K2P 插件开关
