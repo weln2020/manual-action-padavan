@@ -34,9 +34,11 @@
 │   └──Padavan.yml  --- 云编译代码(WEB页底内容)
 │
 ├── config ---插件模板
-│   ├── K2P.config  --- K2P 插件模板
-│   ├── MSG1500.config  --- MSG1500 插件模板
-│   ├── PSG1218.config  --- K2 插件模板
+│   ├── K2P.config
+│   ├── MSG1500.config
+│   ├── NEWIFI3.config
+│   ├── PSG1218.config
+│   ├── XY-C1.config
 │   └── XXX.config  --- [参照源码适配机型增添]
 │
 ├── README.md  --- 说明文件
