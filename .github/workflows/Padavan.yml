@@ -11,10 +11,6 @@ on:
         description: 设置源码地址：
         default: "https://github.com/padavanonly/rt-n56u.git"
         required: false
-      modify:
-        description: 是否应用自定义配置？
-        default: 'yes'
-        required: false
       release:
         description: 是否发布到Release？
         default: 'yes'
@@ -58,22 +54,14 @@ jobs:
         git clone --depth=1 ${{ github.event.inputs.cloneurl }} $RT_N56U > /dev/null
         cd $RT_N56U/toolchain-mipsel
         sh dl_toolchain.sh > /dev/null
-    - name: 自定义配置
-      if: ${{ github.event.inputs.modify == 'yes' }}
+    - name: 开始编译
       run: |
         for m in ${{ github.event.inputs.production }}; do
           cp -f config/$m.config $TRUNK/configs/templates
-        done
-        cp -f ./defaults.h $TRUNK/user/shared
-        cp -f ./versions.inc $TRUNK
-        cd $TRUNK
-        cp -f configs/templates/$m.config .config
-        valtime="\\1 footer_code +='编译日期: ${{ env.DATE }} by <a href=\"$URL1\" target=\"blank\">WELN</a> \& <a href=\"$URL2\" target=\"blank\">恩山论坛</a> \& <a href=\"${{ github.event.inputs.cloneurl }}\" target=\"blank\">源代码</a><br>';"
-        sed -i "s#\(.*Non-Commercial Use Only[^;]*;\).*#$valtime#" user/www/n56u_ribbon_fixed/state.js
-    - name: 开始编译
-      run: |
-        cd $TRUNK
-        for m in ${{ github.event.inputs.production }}; do
+          cp -f ./defaults.h $TRUNK/user/shared
+          cp -f ./versions.inc $TRUNK
+          cd $TRUNK
+          # cp -f configs/templates/$m.config .config
           echo "::group::开始编译 ${m}..."
           sudo ./clear_tree || echo
           sudo ./build_firmware_modify $m > /dev/null
@@ -81,6 +69,8 @@ jobs:
           sudo mv -f images/*.trx $IMAGES
           echo "::endgroup::"
         done
+        valtime="\\1 footer_code +='编译日期: ${{ env.DATE }} by <a href=\"$URL1\" target=\"blank\">WELN</a> \& <a href=\"$URL2\" target=\"blank\">恩山论坛</a> \& <a href=\"${{ github.event.inputs.cloneurl }}\" target=\"blank\">源代码</a><br>';"
+        sed -i "s#\(.*Non-Commercial Use Only[^;]*;\).*#$valtime#" user/www/n56u_ribbon_fixed/state.js
     - name: 收集信息
       run: |
         cd $IMAGES
