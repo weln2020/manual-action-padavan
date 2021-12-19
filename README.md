@@ -52,7 +52,7 @@
 |　**插件模板：**`XXX.config`　| `/configs/templates/XXX.config` |
 |　**默认参数：**`defaults.h`　| `/user/shared/defaults.h` |
 |　**固件版本：**`versions.inc` | `./versions.inc` |
-|　**WEB页面内容：**`state.js` | `/user/www/n56u_ribbon_fixed/state.js` |
+|　**WEB页底内容：**`state.js` | `/user/www/n56u_ribbon_fixed/state.js` |
 
 ## 关注趋势
 [![Stargazers over time](https://starchart.cc/weln2020/manual-action-padavan.svg)](https://github.com/weln2020?tab=repositories "始于2021年12月")
