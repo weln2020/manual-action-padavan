@@ -39,7 +39,7 @@ jobs:
         sudo apt install unzip libtool-bin curl cmake gperf gawk flex bison nano xxd \
         fakeroot kmod cpio git python3-docutils gettext automake autopoint \
         texinfo build-essential help2man pkg-config zlib1g-dev libgmp3-dev \
-        libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget libc-dev-bin  > /dev/null
+        libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget libc-dev-bin > /dev/null
     - name: 生成版本号
       run: |
         whoami
@@ -62,7 +62,8 @@ jobs:
       if: ${{ github.event.inputs.modify == 'yes' }}
       run: |
         for m in ${{ github.event.inputs.production }}; do
-          cp -f config/$m.config $TRUNK/configs/templates done
+          cp -f config/$m.config $TRUNK/configs/templates
+        done
         cp -f ./defaults.h $TRUNK/user/shared
         cp -f ./versions.inc $TRUNK
         cd $TRUNK
