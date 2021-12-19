@@ -31,12 +31,12 @@
 **文件结构说明：**
 ```
 ├──.github/workflows  --- github工作流
-│   └──Padavan.yml  --- 云编译代码(修改：WEB页底内容)
+│   └──Padavan.yml  --- 云编译代码(WEB页底内容)
 │
 ├── config ---插件模板
-│   ├── K2P.config  --- K2P 插件开关
-│   ├── MSG1500.config  --- MSG1500 插件开关
-│   ├── PSG1218.config  --- K2 插件开关
+│   ├── K2P.config  --- K2P 插件模板
+│   ├── MSG1500.config  --- MSG1500 插件模板
+│   ├── PSG1218.config  --- K2 插件模板
 │   └── XXX.config  --- [参照源码适配机型增添]
 │
 ├── README.md  --- 说明文件
