@@ -20,6 +20,9 @@
 ---
 ## 源码地址
 **常用Padavan源码地址 复制到"编译参数"中即可：**
+```
+> > > 官方源码地址：https://bitbucket.org/padavan/rt-n56u/src/master/ < < <
+```
 >- [https://github.com/hanwckf/rt-n56u.git](https://github.com/hanwckf/rt-n56u.git "hanwckf 最新源码")
 >- [https://github.com/chongshengB/rt-n56u.git](https://github.com/chongshengB/rt-n56u.git "chongshengB 优质插件")
 >- [https://github.com/hiboyhiboy/rt-n56u.git](https://github.com/hiboyhiboy/rt-n56u.git "hiboyhiboy 众多插件")
