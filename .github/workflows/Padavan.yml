@@ -29,15 +29,6 @@ jobs:
     steps:
     - name: 同步主存储库
       uses: actions/checkout@master
-    - name: 生成版本号
-      run: |
-        whoami
-        id
-        val1=$(TZ='Asia/Shanghai' date '+%Y.%m.%d-%H%M')
-        echo "DATE=$(TZ='Asia/Shanghai' date '+%Y.%m.%d-%H%M')" >> $GITHUB_ENV
-        val2=$(echo "${{ github.event.inputs.production }}" | sed 's/ /-/')
-        echo "NAME=Padavan-${val2}" >> $GITHUB_ENV
-        ip addr
     - name: 初始环境设置
       run: |
         sudo apt-get update
@@ -45,22 +36,31 @@ jobs:
         fakeroot kmod cpio git python3-docutils gettext automake autopoint \
         texinfo build-essential help2man pkg-config zlib1g-dev libgmp3-dev \
         libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget libc-dev-bin > /dev/null
+    - name: 生成版本号
+      run: |
+        whoami
+        id
+        # val1=$(TZ='Asia/Shanghai' date '+%Y.%m.%d-%H%M')
+        echo "DATE=$(TZ='Asia/Shanghai' date '+%Y.%m.%d-%H%M')" >> $GITHUB_ENV
+        val2=$(echo "${{ github.event.inputs.production }}" | sed 's/ /-/')
+        echo "NAME=Padavan-${val2}" >> $GITHUB_ENV
+        ip addr
     - name: 下载源码
       run: |
         mkdir -p $IMAGES
         echo 开始编译时间： >> $IMAGES/readme.txt
         TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S' >> $IMAGES/readme.txt
         git clone --depth=1 ${{ github.event.inputs.cloneurl }} $RT_N56U > /dev/null
-        cd $RT_N56U/toolchain-mipsel
-        sh dl_toolchain.sh > /dev/null
-    - name: 开始编译
+        # cd $RT_N56U/toolchain-mipsel
+        sh $RT_N56U/toolchain-mipsel/dl_toolchain.sh > /dev/null
+    - name: 自定义配置
       run: |
         cp -f ./defaults.h $TRUNK/user/shared
         cp -f ./versions.inc $TRUNK
-        pushd $TRUNK
         valtime="\\1 footer_code +='编译日期: ${{ env.DATE }} by <a href=\"$URL1\" target=\"blank\">WELN</a> \& <a href=\"$URL2\" target=\"blank\">恩山论坛</a> \& <a href=\"${{ github.event.inputs.cloneurl }}\" target=\"blank\">源代码</a><br>';"
-        sed -i "s#\(.*Non-Commercial Use Only[^;]*;\).*#$valtime#" user/www/n56u_ribbon_fixed/state.js
-        popd
+        sed -i "s#\(.*Non-Commercial Use Only[^;]*;\).*#$valtime#" $TRUNK/user/www/n56u_ribbon_fixed/state.js
+    - name: 开始编译
+      run: |
         for m in ${{ github.event.inputs.production }}; do
           cp -f config/$m.config $TRUNK/configs/templates
           pushd $TRUNK
