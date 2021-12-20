@@ -41,8 +41,9 @@ jobs:
         whoami
         id
         echo "DATE=$(TZ='Asia/Shanghai' date '+%Y.%m.%d-%H%M')" >> $GITHUB_ENV
-        val=$(echo "${{ github.event.inputs.production }}" | sed 's/ /-/')
+        val=$(echo ${{ github.event.inputs.production }} | sed 's/ /-/')
         echo "NAME=Padavan-${val}" >> $GITHUB_ENV
+        echo "${{ env.NAME }}"
         ip addr
     - name: 下载源码
       run: |
