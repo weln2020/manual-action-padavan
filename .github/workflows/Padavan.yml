@@ -40,10 +40,9 @@ jobs:
       run: |
         whoami
         id
-        # val1=$(TZ='Asia/Shanghai' date '+%Y.%m.%d-%H%M')
         echo "DATE=$(TZ='Asia/Shanghai' date '+%Y.%m.%d-%H%M')" >> $GITHUB_ENV
-        val2=$(echo "${{ github.event.inputs.production }}" | sed 's/ /-/')
-        echo "NAME=Padavan-${val2}" >> $GITHUB_ENV
+        val=$(echo "${{ github.event.inputs.production }}" | sed 's/ /-/')
+        echo "NAME=Padavan-${val}" >> $GITHUB_ENV
         ip addr
     - name: 下载源码
       run: |
@@ -51,7 +50,6 @@ jobs:
         echo 开始编译时间： >> $IMAGES/readme.txt
         TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S' >> $IMAGES/readme.txt
         git clone --depth=1 ${{ github.event.inputs.cloneurl }} $RT_N56U > /dev/null
-        # cd $RT_N56U/toolchain-mipsel
         sh $RT_N56U/toolchain-mipsel/dl_toolchain.sh > /dev/null
     - name: 自定义配置
       run: |
@@ -63,7 +61,7 @@ jobs:
       run: |
         for m in ${{ github.event.inputs.production }}; do
           cp -f config/$m.config $TRUNK/configs/templates
-          pushd $TRUNK
+          pushd $RT_N56U
           echo "::group::开始编译 ${m}..."
           sudo ./clear_tree || echo
           sudo ./build_firmware_modify $m > /dev/null
