@@ -61,7 +61,7 @@ jobs:
       run: |
         for m in ${{ github.event.inputs.production }}; do
           cp -f config/$m.config $TRUNK/configs/templates
-          pushd $RT_N56U
+          pushd $TRUNK
           echo "::group::开始编译 ${m}..."
           sudo ./clear_tree || echo
           sudo ./build_firmware_modify $m > /dev/null
