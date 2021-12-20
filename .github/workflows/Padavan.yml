@@ -22,7 +22,7 @@ env:
   TRUNK: /opt/rt-n56u/trunk
   URL1: "https://github.com/weln2020/manual-action-padavan"
   URL2: "https://www.right.com.cn/forum/thread-6896728-1-1.html"
-  DATE: "$(TZ='Asia/Shanghai' date '+%Y.%m.%d-%H%M')"
+  DATE: "(TZ='Asia/Shanghai' date '+%Y.%m.%d-%H%M')"
         # echo "DATE=$(TZ='Asia/Shanghai' date '+%Y.%m.%d-%H%M')" >> $GITHUB_ENV
 jobs:
   build:
