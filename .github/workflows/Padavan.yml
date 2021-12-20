@@ -44,13 +44,13 @@ jobs:
         git clone --depth=1 ${{ github.event.inputs.cloneurl }} $RT_N56U > /dev/null
         cd $RT_N56U/toolchain-mipsel
         sh dl_toolchain.sh > /dev/null
-    - name: 自定义配置
-      run: |
         echo "DATE=$(TZ='Asia/Shanghai' date '+%Y.%m.%d-%H%M')" >> $GITHUB_ENV
         echo "NAME=Padavan- ${{ github.event.inputs.production }}" >> $GITHUB_ENV
+    - name: 自定义配置
+      run: |
         cp -f ./defaults.h $TRUNK/user/shared
         cp -f ./versions.inc $TRUNK
-        valtime="\\1 footer_code +='编译日期: $DATE by <a href=\"$URL1\" target=\"blank\">WELN</a> \& <a href=\"$URL2\" target=\"blank\">恩山论坛</a> \& <a href=\"${{ github.event.inputs.cloneurl }}\" target=\"blank\">源代码</a><br>';"
+        valtime="\\1 footer_code +='编译日期: ${{ env.DATE }} by <a href=\"$URL1\" target=\"blank\">WELN</a> \& <a href=\"$URL2\" target=\"blank\">恩山论坛</a> \& <a href=\"${{ github.event.inputs.cloneurl }}\" target=\"blank\">源代码</a><br>';"
         sed -i "s#\(.*Non-Commercial Use Only[^;]*;\).*#$valtime#" $TRUNK/user/www/n56u_ribbon_fixed/state.js
     - name: 开始编译
       run: |
