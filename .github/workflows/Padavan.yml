@@ -38,13 +38,9 @@ jobs:
         libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget libc-dev-bin > /dev/null
     - name: 生成版本号
       run: |
-        whoami
-        id
         echo "DATE=$(TZ='Asia/Shanghai' date '+%Y.%m.%d-%H%M')" >> $GITHUB_ENV
-        val=$(echo ${{ github.event.inputs.production }} | sed 's/ /-/')
-        echo "NAME=Padavan-${val}" >> $GITHUB_ENV
-        ip addr
-        echo "${{ env.NAME }}"
+        # val=$(echo ${{ github.event.inputs.production }} | sed 's/ /-/')
+        echo "NAME=Padavan-${{ github.event.inputs.production }}" >> $GITHUB_ENV
     - name: 下载源码
       run: |
         mkdir -p $IMAGES
