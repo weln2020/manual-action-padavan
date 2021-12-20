@@ -50,7 +50,7 @@ jobs:
         echo 开始编译时间： >> $IMAGES/readme.txt
         TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S' >> $IMAGES/readme.txt
         git clone --depth=1 ${{ github.event.inputs.cloneurl }} $RT_N56U > /dev/null
-        sh $RT_N56U/toolchain-mipsel/dl_toolchain.sh > /dev/null
+        sudo sh $RT_N56U/toolchain-mipsel/dl_toolchain.sh > /dev/null
     - name: 自定义配置
       run: |
         cp -f ./defaults.h $TRUNK/user/shared
