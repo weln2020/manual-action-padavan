@@ -43,7 +43,7 @@ jobs:
         val3=$(TZ='Asia/Shanghai' date '+%Y.%m.%d-%H%M')
         echo "DATE=$val3" >> $GITHUB_ENV
         val1="${{ github.event.inputs.production }}"
-        val2=$(echo $val1 | sed 's/ /-/')
+        val2=$(echo "${{ github.event.inputs.production }}" | sed 's/ /-/')
         echo "NAME=Padavan-${val2}" >> $GITHUB_ENV
         ip addr
     - name: 下载源码
@@ -88,7 +88,7 @@ jobs:
         echo md5校验值： >> readme.txt
         for m in *.trx
         do
-          mv -f -v "$m" "${m%.*}_${{ env.DATE }}.trx"
+          mv -fv "$m" "${m%.*}_${{ env.DATE }}.trx"
         done
         md5sum *.trx >> readme.txt || echo
         ls -l
