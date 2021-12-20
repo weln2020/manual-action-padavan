@@ -29,6 +29,15 @@
 >- [https://github.com/padavanonly/rt-n56u.git](https://github.com/padavanonly/rt-n56u.git "padavanonly 率先支持KVR")
 >- [https://github.com/immortalwrt/padavan.git](https://github.com/immortalwrt/padavan.git "immortalwrt KVR及小细节")
 ---
+## 机型列表
+**类似硬件设备可以通刷 也可以增加.config来适配机型：**
+| 处理器 | 型号 |
+|:------:|----------|
+| mt7620 | PSG1208　PSG1218　NEWIFI-MINI　MI-MINI　MI-3　OYE-001　5K-W20 |
+| mt7628 | HC5861B　MI-NANO　MZ-R13　MZ-R13P　360P2　HC5761A　HC5661A |
+| mt7621 | K2P_nano　K2P　DIR-878　RM2100　CR660x |
+| mt7621-usb | XY-C1　JCG-836PRO　JCG-AC860M　JCG-Y2　DIR-882　A3004NS　MSG1500　WR1200JS　MI-R3G　NEWIFI3　B70 |
+---
 ## 自定义文件
 **文件结构说明：**
 ```
