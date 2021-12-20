@@ -36,11 +36,6 @@ jobs:
         fakeroot kmod cpio git python3-docutils gettext automake autopoint \
         texinfo build-essential help2man pkg-config zlib1g-dev libgmp3-dev \
         libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget libc-dev-bin > /dev/null
-    - name: 生成版本号
-      run: |
-        echo "DATE=$(TZ='Asia/Shanghai' date '+%Y.%m.%d-%H%M')" >> $GITHUB_ENV
-        # val=$(echo ${{ github.event.inputs.production }} | sed 's/ /-/')
-        echo "NAME=Padavan-${{ github.event.inputs.production }}" >> $GITHUB_ENV
     - name: 下载源码
       run: |
         mkdir -p $IMAGES
@@ -51,6 +46,8 @@ jobs:
         sh dl_toolchain.sh > /dev/null
     - name: 自定义配置
       run: |
+        echo "DATE=$(TZ='Asia/Shanghai' date '+%Y.%m.%d-%H%M')" >> $GITHUB_ENV
+        echo "NAME=Padavan- ${{ github.event.inputs.production }}" >> $GITHUB_ENV
         cp -f ./defaults.h $TRUNK/user/shared
         cp -f ./versions.inc $TRUNK
         valtime="\\1 footer_code +='编译日期: ${{ env.DATE }} by <a href=\"$URL1\" target=\"blank\">WELN</a> \& <a href=\"$URL2\" target=\"blank\">恩山论坛</a> \& <a href=\"${{ github.event.inputs.cloneurl }}\" target=\"blank\">源代码</a><br>';"
