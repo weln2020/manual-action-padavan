@@ -6,10 +6,10 @@
 
 [![](https://github.com/weln2020/manual-action-padavan/actions/workflows/Padavan.yml/badge.svg)](https://github.com/weln2020/manual-action-padavan/actions/workflows/Padavan.yml)
 [![](https://img.shields.io/github/v/release/weln2020/manual-action-padavan?label=编译日期)](https://github.com/weln2020/manual-action-padavan/releases)
+
 >代码参考：[tick-guo](https://github.com/tick-guo/router-rom "60%")　[HuaZhuangNan](https://github.com/HuaZhuangNan/actions-build-padavan-openwrt "40%")
 >
 >转载请注明出处 喜欢请点右上角 `Star` 给我加星
->
 ---
 ## 使用方法
 **Padavan手动云编译工作流 适用大部分源码 可同时编译多个固件 内含自定义文件 无需Fork修改源码：**
@@ -18,7 +18,6 @@
 >2.依次点击 `Actions`→`Padavan手动云编译`→`Run workflow ▼`
 >
 >3.在弹出的窗口里填写"编译参数" 点击 `Run workflow` 开始云编译
->
 ---
 ## 源码地址
 **常用Padavan源码地址 复制到"编译参数"中即可：**
@@ -27,7 +26,6 @@
 >- [https://github.com/hiboyhiboy/rt-n56u.git](https://github.com/hiboyhiboy/rt-n56u.git "hiboyhiboy 众多插件")
 >- [https://github.com/padavanonly/rt-n56u.git](https://github.com/padavanonly/rt-n56u.git "padavanonly 率先支持KVR")
 >- [https://github.com/immortalwrt/padavan.git](https://github.com/immortalwrt/padavan.git "immortalwrt KVR及小细节")
->
 ---
 ## 自定义文件
 **文件结构说明：**
