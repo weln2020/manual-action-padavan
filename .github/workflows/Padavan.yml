@@ -28,7 +28,16 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     - name: 同步主存储库
-      uses: actions/checkout@master   
+      uses: actions/checkout@master
+    - name: 生成版本号
+      run: |
+        whoami
+        id
+        val1=$(TZ='Asia/Shanghai' date '+%Y.%m.%d-%H%M')
+        echo "DATE=$(TZ='Asia/Shanghai' date '+%Y.%m.%d-%H%M')" >> $GITHUB_ENV
+        val2=$(echo "${{ github.event.inputs.production }}" | sed 's/ /-/')
+        echo "NAME=Padavan-${val2}" >> $GITHUB_ENV
+        ip addr
     - name: 初始环境设置
       run: |
         sudo apt-get update
@@ -36,16 +45,6 @@ jobs:
         fakeroot kmod cpio git python3-docutils gettext automake autopoint \
         texinfo build-essential help2man pkg-config zlib1g-dev libgmp3-dev \
         libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget libc-dev-bin > /dev/null
-    - name: 生成版本号
-      run: |
-        whoami
-        id
-        val3=$(TZ='Asia/Shanghai' date '+%Y.%m.%d-%H%M')
-        echo "DATE=$val3" >> $GITHUB_ENV
-        val1="${{ github.event.inputs.production }}"
-        val2=$(echo "${{ github.event.inputs.production }}" | sed 's/ /-/')
-        echo "NAME=Padavan-${val2}" >> $GITHUB_ENV
-        ip addr
     - name: 下载源码
       run: |
         mkdir -p $IMAGES
