@@ -50,7 +50,7 @@ jobs:
       run: |
         cwd=`pwd`
         CONFIG_TOOLCHAIN_DIR=${cwd//\//\\\/}\\/toolchain-mipsel
-        sed -i "s/^CONFIG_TOOLCHAIN_DIR=.*$/CONFIG_TOOLCHAIN_DIR=${CONFIG_TOOLCHAIN_DIR}/g" configs/${{ github.event.inputs.production }}.config
+        sed -i "s/^CONFIG_TOOLCHAIN_DIR=.*$/CONFIG_TOOLCHAIN_DIR=${CONFIG_TOOLCHAIN_DIR}/g" config/${{ github.event.inputs.production }}.config
         cp -f ./versions.inc $TRUNK
         cp -f ./defaults.h $TRUNK/user/shared
         cp -f config/${{ github.event.inputs.production }}.config $TRUNK/configs/templates
