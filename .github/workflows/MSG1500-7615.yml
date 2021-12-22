@@ -1,0 +1,102 @@
+name: Padavan手动云编译
+
+on:
+  workflow_dispatch:
+    inputs:
+      production:
+        description: 设置固件型号：
+        default: "MSG1500-7615"
+        required: false
+      cloneurl:
+        description: 设置源码地址：
+        default: "https://github.com/vb1980/Padavan-KVR.git"
+        required: false
+      release:
+        description: 是否发布到Release？
+        default: 'yes'
+        required: false
+
+env:
+  IMAGES: /opt/images
+  RT_N56U: /opt/rt-n56u
+  TRUNK: /opt/rt-n56u/trunk
+  URL1: "https://github.com/weln2020/manual-action-padavan"
+  URL2: "https://www.right.com.cn/forum/thread-6896728-1-1.html"
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+    - name: 同步主存储库
+      uses: actions/checkout@master
+    - name: 初始环境设置
+      run: |
+        sudo apt-get update
+        sudo apt install unzip libtool-bin curl cmake gperf gawk flex bison nano xxd \
+        fakeroot kmod cpio git python3-docutils gettext automake autopoint \
+        texinfo build-essential help2man pkg-config zlib1g-dev libgmp3-dev \
+        libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget libc-dev-bin > /dev/null
+    - name: 下载源码
+      run: |
+        echo "DATE=$(TZ='Asia/Shanghai' date '+%Y.%m.%d-%H%M')" >> $GITHUB_ENV
+        echo "NAME=Padavan- ${{ github.event.inputs.production }}" >> $GITHUB_ENV
+        mkdir -p $IMAGES
+        echo 开始编译时间： >> $IMAGES/readme.txt
+        TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S' >> $IMAGES/readme.txt
+        git clone --depth=1 ${{ github.event.inputs.cloneurl }} $RT_N56U > /dev/null
+        cd $RT_N56U/toolchain-mipsel
+        sh dl_toolchain.sh > /dev/null
+    - name: 自定义配置&开始编译
+      run: |
+        cwd=`pwd`
+        CONFIG_TOOLCHAIN_DIR=${cwd//\//\\\/}\\/toolchain-mipsel
+        valtime="\\1 footer_code +='编译日期: ${{ env.DATE }} by <a href=\"$URL1\" target=\"blank\">WELN</a> \& <a href=\"$URL2\" target=\"blank\">恩山论坛</a> \& <a href=\"${{ github.event.inputs.cloneurl }}\" target=\"blank\">源代码</a><br>';"
+        cp -f ./versions.inc $TRUNK
+        cp -f ./defaults.h $TRUNK/user/shared
+        cp -f config/$m.config $TRUNK/configs/templates
+        cd $TRUNK
+        sed -i "s#\(.*Non-Commercial Use Only[^;]*;\).*#$valtime#" user/www/n56u_ribbon_fixed/state.js
+        sed -i "s/^CONFIG_TOOLCHAIN_DIR=.*$/CONFIG_TOOLCHAIN_DIR=${CONFIG_TOOLCHAIN_DIR}/g" configs/templates/${{ github.event.inputs.production }}.config
+        echo "::group::开始编译 ${{ github.event.inputs.production }}..."
+        sudo ./clear_tree || echo
+        sudo ./build_firmware_modify ${{ github.event.inputs.production }} > /dev/null
+        ls -l images
+        sudo mv -f images/*.trx $IMAGES
+        echo "::endgroup::"
+    - name: 收集信息
+      run: |
+        cd $IMAGES
+        echo 完成编译时间： >> readme.txt
+        TZ='Asia/Shanghai'  date  '+%Y-%m-%d %H:%M:%S' >> readme.txt
+        echo >> readme.txt
+        echo 源码信息： >> readme.txt
+        pushd $RT_N56U
+        git ls-remote --get-url origin >> $IMAGES/readme.txt
+        git log --shortstat >> $IMAGES/readme.txt
+        popd
+        echo >> readme.txt
+        echo md5校验值： >> readme.txt
+        for m in *.trx
+        do
+          mv -fv "$m" "${m%.*}_${{ env.DATE }}.trx"
+        done
+        md5sum *.trx >> readme.txt || echo
+        ls -l
+    - name: 上传固件到Artifacts
+      if: true
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{ env.NAME }}
+        path: ${{ env.IMAGES }}
+    - name: 发布固件到Release
+      if: ${{ github.event.inputs.release == 'yes' }}
+      uses: softprops/action-gh-release@v1
+      with:
+        name: ${{ env.NAME }}
+        tag_name: ${{ env.DATE }}
+        body_path: ${{ env.IMAGES }}/readme.txt
+        draft: false
+        prerelease: false
+        files: ${{ env.IMAGES }}/*
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
