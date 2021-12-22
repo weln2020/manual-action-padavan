@@ -1,8 +1,8 @@
 name: Padavan手动云编译
 
-on:
-  workflow_dispatch:
-    inputs:
+#on:
+  #workflow_dispatch:
+    #inputs:
       production:
         description: 设置固件型号：
         default: "MSG1500-7615"
