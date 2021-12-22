@@ -1,4 +1,4 @@
-name: Padavan手动云编译
+name: MSG1500-7615手动云编译
 
 on:
   workflow_dispatch:
