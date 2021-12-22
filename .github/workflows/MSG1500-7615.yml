@@ -46,17 +46,17 @@ jobs:
         git clone --depth=1 ${{ github.event.inputs.cloneurl }} $RT_N56U > /dev/null
         cd $RT_N56U/toolchain-mipsel
         sh dl_toolchain.sh > /dev/null
-    - name: 自定义配置&开始编译
+    - name: 修改配置&开始编译
       run: |
         cwd=`pwd`
         CONFIG_TOOLCHAIN_DIR=${cwd//\//\\\/}\\/toolchain-mipsel
-        valtime="\\1 footer_code +='编译日期: ${{ env.DATE }} by <a href=\"$URL1\" target=\"blank\">WELN</a> \& <a href=\"$URL2\" target=\"blank\">恩山论坛</a> \& <a href=\"${{ github.event.inputs.cloneurl }}\" target=\"blank\">源代码</a><br>';"
+        sed -i "s/^CONFIG_TOOLCHAIN_DIR=.*$/CONFIG_TOOLCHAIN_DIR=${CONFIG_TOOLCHAIN_DIR}/g" configs/${{ github.event.inputs.production }}.config
         cp -f ./versions.inc $TRUNK
         cp -f ./defaults.h $TRUNK/user/shared
-        cp -f config/$m.config $TRUNK/configs/templates
+        cp -f config/${{ github.event.inputs.production }}.config $TRUNK/configs/templates
         cd $TRUNK
+        valtime="\\1 footer_code +='编译日期: ${{ env.DATE }} by <a href=\"$URL1\" target=\"blank\">WELN</a> \& <a href=\"$URL2\" target=\"blank\">恩山论坛</a> \& <a href=\"${{ github.event.inputs.cloneurl }}\" target=\"blank\">源代码</a><br>';"
         sed -i "s#\(.*Non-Commercial Use Only[^;]*;\).*#$valtime#" user/www/n56u_ribbon_fixed/state.js
-        sed -i "s/^CONFIG_TOOLCHAIN_DIR=.*$/CONFIG_TOOLCHAIN_DIR=${CONFIG_TOOLCHAIN_DIR}/g" configs/templates/${{ github.event.inputs.production }}.config
         echo "::group::开始编译 ${{ github.event.inputs.production }}..."
         sudo ./clear_tree || echo
         sudo ./build_firmware_modify ${{ github.event.inputs.production }} > /dev/null
