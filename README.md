@@ -37,6 +37,8 @@
 >- [https://github.com/hiboyhiboy/rt-n56u.git](https://github.com/hiboyhiboy/rt-n56u.git "hiboyhiboy 众多插件")
 >- [https://github.com/padavanonly/rt-n56u.git](https://github.com/padavanonly/rt-n56u.git "padavanonly 率先支持KVR")
 >- [https://github.com/immortalwrt/padavan.git](https://github.com/immortalwrt/padavan.git "immortalwrt KVR及小细节")
+>- [https://github.com/keke1023/Padavan.git](https://github.com/keke1023/Padavan.git "keke1023 四码融合一")
+>- [https://github.com/vb1980/Padavan-KVR.git](https://github.com/vb1980/Padavan-KVR.git "vb1980 四码融合二")
 ---
 ## 机型列表
 **类似硬件设备可以通刷 也可以增加.config来适配机型：**
