@@ -77,10 +77,10 @@
 |　**1.插件模板：**`XXX.config`　| `/configs/templates/XXX.config` |
 |　**2.固件版本：**`versions.inc` | `./versions.inc` |
 |　**3.默认参数：**`defaults.h`　| `/user/shared/defaults.h` |
-|　**4.WEB页底内容：**`state.js` | `/user/www/n56u_ribbon_fixed/state.js` 
-|　**5.路由硬件配置：**`kernel-3.4.x.config` | `/configs/boards/XXX/kernel-3.4.x.config` |
-|　**6.指示灯与复位键：**`board.h` | `/configs/boards/XXX/board.h` |
-|　**7.telnet与ssh：**`defaults.c` | `/user/shared/defaults.c` |
+|　**4.telnet与ssh：**`defaults.c` | `/user/shared/defaults.c` |
+|　**5.WEB页底内容：**`state.js` | `/user/www/n56u_ribbon_fixed/state.js` 
+|　**6.路由硬件配置：**`kernel-3.4.x.config` | `/configs/boards/XXX/kernel-3.4.x.config` |
+|　**7.指示灯与复位键：**`board.h` | `/configs/boards/XXX/board.h` |
 ---
 ---
 ## 关注趋势
