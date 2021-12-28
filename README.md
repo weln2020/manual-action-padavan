@@ -41,7 +41,7 @@
 >- [https://github.com/vb1980/Padavan-KVR.git](https://github.com/vb1980/Padavan-KVR.git "vb1980 四码融合二")
 ---
 ## 机型列表
-**类似硬件设备可以通刷 也可以增加.config来适配机型：**
+**类似硬件设备可以通刷 也可以增加XXX.config来适配机型：**
 | 处理器 | 型号 |
 |:------:|----------|
 | **mt7620** | 5K-W20　MI-3　MI-MINI　NEWIFI-MINI　OYE-001　PSG1208　PSG1218　YK-L1 |
