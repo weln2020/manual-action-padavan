@@ -35,10 +35,10 @@ jobs:
         cd $RT_N56U/toolchain-mipsel && sh dl_toolchain.sh       
     - name: 开始编译
       run: |
-        cp -f config/${{ github.event.inputs.target }}.config $TRUNK/configs/templates
+        cp -f config/${{ github.event.inputs.production }}.config $TRUNK/configs/templates
         cp -f build_firmware_modify $TRUNK
         mkdir -p $IMAGES && cd $TRUNK
-        sudo ./build_firmware_modify ${{ github.event.inputs.target }}
+        sudo ./build_firmware_modify ${{ github.event.inputs.production }}
         sudo mv -f images/*.trx $IMAGES && sudo ./clear_tree
     - name: 上传固件到Artifacts
       if: true
