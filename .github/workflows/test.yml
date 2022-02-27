@@ -25,10 +25,7 @@ jobs:
     - name: 初始环境设置
       run: |
         sudo apt-get update && sudo timedatectl set-timezone "Asia/Shanghai"
-        sudo apt install unzip libtool-bin curl cmake gperf gawk flex bison nano xxd \
-        fakeroot kmod cpio git python3-docutils gettext automake autopoint \
-        texinfo build-essential help2man pkg-config zlib1g-dev libgmp3-dev \
-        libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget libc-dev-bin
+        sudo apt install libtool-bin gperf python3-docutils autopoint gettext
     - name: 下载源码
       run: |
         git clone --depth=1 ${{ github.event.inputs.cloneurl }} $RT_N56U
@@ -38,10 +35,9 @@ jobs:
         cp -f config/${{ github.event.inputs.production }}.config $TRUNK/configs/templates
         cp -f build_firmware_modify $TRUNK
         mkdir -p $IMAGES && cd $TRUNK
-        sudo ./build_firmware_modify ${{ github.event.inputs.production }}
-        sudo mv -f images/*.trx $IMAGES && sudo ./clear_tree
+        sudo build_firmware_modify ${{ github.event.inputs.production }}
+        sudo mv -f images/*.trx $IMAGES && sudo clear_tree
     - name: 上传固件到Artifacts
-      if: true
       uses: actions/upload-artifact@master
       with:
         name: PSG1218
