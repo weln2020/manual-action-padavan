@@ -1,0 +1,49 @@
+name: 云编译PSG1218
+
+on:
+  workflow_dispatch:
+    inputs:
+      production:
+        description: 输入固件型号：
+        default: "PSG1218"
+        required: false
+      cloneurl:
+        description: 输入源码地址：
+        default: "https://github.com/vb1980/Padavan-KVR.git"
+        required: false
+env:
+  IMAGES: /opt/images
+  RT_N56U: /opt/rt-n56u
+  TRUNK: /opt/rt-n56u/trunk
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: 同步主存储库
+      uses: actions/checkout@master
+    - name: 初始环境设置
+      run: |
+        sudo apt-get update && sudo timedatectl set-timezone "Asia/Shanghai"
+        sudo apt install unzip libtool-bin curl cmake gperf gawk flex bison nano xxd \
+        fakeroot kmod cpio git python3-docutils gettext automake autopoint \
+        texinfo build-essential help2man pkg-config zlib1g-dev libgmp3-dev \
+        libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget libc-dev-bin
+    - name: 下载源码
+      run: |
+        git clone --depth=1 ${{ github.event.inputs.cloneurl }} $RT_N56U
+        cd $RT_N56U/toolchain-mipsel && sh dl_toolchain.sh       
+    - name: 开始编译
+      run: |
+        cp -f config/${{ github.event.inputs.target }}.config $TRUNK/configs/templates
+        cp -f build_firmware_modify $TRUNK
+        mkdir -p $IMAGES && cd $TRUNK
+        sudo ./build_firmware_modify ${{ github.event.inputs.target }}
+        sudo mv -f images/*.trx $IMAGES && sudo ./clear_tree
+    - name: 上传固件到Artifacts
+      if: true
+      uses: actions/upload-artifact@master
+      with:
+        name: PSG1218
+        path: ${{ env.IMAGES }}
+ 
