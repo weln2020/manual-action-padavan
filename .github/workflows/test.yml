@@ -11,10 +11,6 @@ on:
         description: 输入源码地址：
         default: "https://github.com/vb1980/Padavan-KVR.git"
         required: false
-env:
-  IMAGES: /opt/images
-  RT_N56U: /opt/rt-n56u
-  TRUNK: /opt/rt-n56u/trunk
 
 jobs:
   build:
@@ -28,18 +24,19 @@ jobs:
         sudo apt install libtool-bin gperf python3-docutils autopoint gettext
     - name: 下载源码
       run: |
-        git clone --depth=1 ${{ github.event.inputs.cloneurl }} $RT_N56U
-        cd $RT_N56U/toolchain-mipsel && sh dl_toolchain.sh       
+        git clone --depth=1 ${{ github.event.inputs.cloneurl }} /opt/rt-n56u
+        cd /opt/rt-n56u/toolchain-mipsel && sh dl_toolchain.sh       
+    - name: 自定义
+      run: |
+        cp -f config/${{ github.event.inputs.production }}.config /opt/rt-n56u/trunk/configs/templates
+        cp -f build_firmware_modify /opt/rt-n56u/trunk
     - name: 开始编译
       run: |
-        cp -f config/${{ github.event.inputs.production }}.config $TRUNK/configs/templates
-        cp -f build_firmware_modify $TRUNK
-        mkdir -p $IMAGES && cd $TRUNK
-        sudo ./build_firmware_modify ${{ github.event.inputs.production }}
-        sudo mv -f images/*.trx $IMAGES && sudo ./clear_tree
+        mkdir -p /opt/images && cd /opt/rt-n56u/trunk
+        sudo ./build_firmware_ci ${{ github.event.inputs.production }}
+        sudo mv -f images/*.trx /opt/images && sudo ./clear_tree
     - name: 上传固件到Artifacts
       uses: actions/upload-artifact@master
       with:
         name: PSG1218
-        path: ${{ env.IMAGES }}
- 
+        path: /opt/images
