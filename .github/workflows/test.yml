@@ -30,8 +30,6 @@ jobs:
       run: |
         cp -f config/${{ github.event.inputs.production }}.config /opt/rt-n56u/trunk/configs/templates
         cp -f build_firmware_modify /opt/rt-n56u/trunk
-        ls -l /opt/rt-n56u/trunk/configs/templates
-        ls -l /opt/rt-n56u/trunk
     - name: 开始编译
       run: |
         mkdir -p /opt/images && cd /opt/rt-n56u/trunk
