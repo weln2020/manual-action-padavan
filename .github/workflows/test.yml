@@ -28,8 +28,8 @@ jobs:
         cd /opt/rt-n56u/toolchain-mipsel && sh dl_toolchain.sh
     - name: 自定义
       run: |
-        cp -f config/${{ github.event.inputs.production }}.config /opt/rt-n56u/trunk/configs/templates
-        cp -f build_firmware_modify /opt/rt-n56u/trunk
+        #cp -f config/${{ github.event.inputs.production }}.config /opt/rt-n56u/trunk/configs/templates
+        #cp -f build_firmware_modify /opt/rt-n56u/trunk
     - name: 开始编译
       run: |
         mkdir -p /opt/images && cd /opt/rt-n56u/trunk
